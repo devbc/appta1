@@ -1,0 +1,153 @@
+'Use Strict';
+angular.module('App').controller('homeController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $log, $location, $http, $ionicPopup, $firebaseObject, $ionicSideMenuDelegate, Auth, FURL, Utils, $firebaseArray, $ionicScrollDelegate) {
+
+    var h = window.innerHeight;
+    //    document.getElementById("itemScroll").style.height = h - 50;
+
+    $scope.itemHeight = 300;
+    $scope.offset = 6;
+    var topMargin = 50;
+    document.getElementById("listContainer").style.marginTop = topMargin+"px";
+    $scope.newestItems = [];
+    var ref = firebase.database().ref();
+    $scope.itemList = $firebaseArray(firebase.database().ref().child("items"));
+    $scope.isScrolling = false;
+   
+  $scope.logOut = function () {
+      Auth.logout();
+      $location.path("/login");
+  }
+  
+  $scope.profile = function () {
+      $location.path("/profile");
+  }
+
+  $scope.showLeftMenu = function () {
+    $ionicSideMenuDelegate.toggleLeft();
+   };
+
+  $scope.addNewItem = function () {
+      if ($rootScope.currentUser) {
+          $location.path("/add");
+      } else {
+          $ionicPopup.alert({
+              title: 'Error.',
+              template: 'Please login to continue.'
+          });
+      }
+      
+  }
+
+
+  $scope.scrolled = function () {
+      console.log(window.innerHeight + topMargin);
+      var top = $ionicScrollDelegate.getScrollPosition().top;
+      var totalScrolled = top + (document.getElementById("listContainer").scrollHeight + topMargin);
+      var threshold = (Math.ceil($scope.offset / 2) * ($scope.itemHeight));
+      console.log(totalScrolled + "<<>>" + threshold);
+      //totalScrolled >= threshold && 
+      if ($scope.newestItems.length < $scope.itemList.length && !$scope.isScrolling) {
+       //   alert("asas");
+          $scope.getHomeItems();
+          $scope.isScrolling = true;
+      }
+     
+      console.log("top: " + document.getElementById("listContainer").scrollHeight);
+      console.log("window.innerHeight: " + window.innerHeight);
+      console.log(top + window.innerHeight +topMargin);
+  }
+ 
+ /* var scrollRef = firebase.util.Scroll(itemList, 'title');
+  scrollRef.scroll.next(5);
+  $scope.getHomeItems = function () {
+      scrollRef.scroll.next(5);
+      $scope.$broadcast('scroll.infiniteScrollComplete');
+}*/
+   
+
+  Utils.show();
+ // alert(firebase);
+  //firebase.initializeApp(FURL);
+  $scope.getHomeItems = function () {
+      // alert("1");
+      var itemListQuery = null;
+      if ($scope.newestItems.length === 0) {
+          //itemListQuery = $firebaseArray(firebase.database().ref().child("items").orderByChild('created_on').limitToFirst($scope.offset));
+          var ref = firebase.database().ref().child("items");
+          itemListQuery = ref.orderByChild('created_on')
+              .limitToFirst($scope.offset).orderByChild("sold").equalTo("N").once('value').then(function (createdOnSnap) {
+                  //ref.orderByChild("sold").equalTo("N").once('value').then(function (unsoldSnap) {
+                  //    ref.orderByChild("approved").equalTo(true).once('value').then(function (approvedSnap) {
+                  var valu = createdOnSnap.val();
+                          for (var key in valu) {
+                              if (valu.hasOwnProperty(key)) {
+                                  val = valu[key];
+                                 console.log(val.id + " <><> " + key);
+                              }
+                          }
+                    //  });
+                //  });
+              });
+          console.log(itemListQuery)
+      /*    var fb = new Firebase("https://examples-sql-queries.firebaseio.com/");
+          fb.child('user/123').once('value', function (userSnap) {
+              fb.child('media/123').once('value', function (mediaSnap) {
+                  // extend function: https://gist.github.com/katowulf/6598238
+                  console.log(extend({}, userSnap.val(), mediaSnap.val()));
+              });
+          });
+
+          var x = firebase.database().ref('/users').orderByChild("email").equalTo(authData.email).once('value').then(function (snapshot) {
+              var user1 = snapshot.val();
+              var usr;
+              //   alert("user1:: " + JSON.stringify(user1));
+              for (var key in user1) {
+                  if (user1.hasOwnProperty(key)) {
+                      usr = user1[key];
+                      //   alert("usr:: " + JSON.stringify(usr));
+                      break;
+                  }
+              }
+              //  alert(usr.name + " .... " + usr.handle + " .. " + usr.address);
+              $rootScope.currentUser = usr;
+          });
+          */
+      } else {
+          itemListQuery = $firebaseArray(firebase.database().ref().child("items").orderByChild('created_on').limitToFirst($scope.newestItems.length).limitToLast($scope.offset + $scope.newestItems.length));
+      }
+              
+   //   alert("2");
+   /*   itemListQuery.$loaded().then(function (response) {
+          for (var i = 0; i < response.length; i++) {
+
+              if (response[i].itemPicture) {
+                  picture = response[i].itemPicture;
+              } else {
+                  picture = '../../img/item-sample.png';
+              }
+             
+              $scope.newestItems.push({
+                  price: response[i].itemPrice,
+                  location: response[i].itemLocation,
+                  name: response[i].itemName,
+                  picture: picture,
+                  featured: response[i].featured,
+                  id: response[i].id,
+              });
+              console.log($scope.newestItems.length);
+           //   alert(JSON.stringify($scope.newestItems));
+          }
+          $scope.$broadcast('scroll.refreshComplete');
+          $scope.isScrolling = false;
+       //   $scope.$broadcast('scroll.infiniteScrollComplete');
+          Utils.hide();
+      });
+      */
+         
+       //   $ionicLoading.hide();
+   
+  }
+  
+  $scope.getHomeItems();
+}
+);

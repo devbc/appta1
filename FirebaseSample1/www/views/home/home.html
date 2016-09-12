@@ -1,0 +1,44 @@
+<ion-view cache-view="false">
+    <ion-floating-button-left ng-click="showLeftMenu()" has-footer="false" button-color="#a91cfd" icon="ion-android-menu" iconColor="#fff">
+    </ion-floating-button-left>
+    <ion-floating-button-right click="addNewItem()" has-footer="false" button-color="#a91cfd" icon="ion-plus" iconColor="#fff">
+    </ion-floating-button-right>
+    <div class="bar bar-header titleBar">
+        <label class="search-input item item-input">
+            <i class="icon ion-search placeholder-icon" style="margin-left:40%;"></i>
+            <input type="search" placeholder="Search">
+        </label>
+        <a class="filter button button-icon icon ion-android-options"></a>
+    </div>
+    <ion-content on-scroll="scrolled()">
+     <!--   <ion-scroll id="itemScroll" direction="y" style="background-color:#f2f2f2; width: 100%; margin-top: 50px;" on-scroll="scrolled()">-->
+            <ion-refresher pulling-text="Refreshing Feed..."
+                           on-refresh="getHomeItems()">
+            </ion-refresher>
+            <div ng-show="newestItems.length" style="background-color:aqua !important;" class="list" id="listContainer">
+               
+                <div ng-repeat="item in newestItems">
+                    <div ng-class="$even ? 'odd' : 'even'">
+                        <a href="#/app/item/{{item.id}}">
+                            <div class="itemHolder" ng-style="{height:itemHeight+'px'}">
+                                <div style="background: no-repeat center center; width: 150px; height:104px;">
+                                    <img src="{{item.itemPicture}}" width="150" height="104" />
+                                </div>
+                                <div style="width:150px; height:18px;">
+                                    <span>{{item.itemName | limitTo:40}}</span>
+                                </div>
+                                <div style="width:150px; height:18px;">
+                                    <span>{{item.itemPrice}}</span>|<span>{{item.itemLocation | limitTo:40}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        <!--</ion-scroll> -->
+            <!-- TODO Profile -->
+            <!-- <button ng-click="profile()" class="button button-outline button-assertive">Profile</button> -->
+            <!--   <button ng-click="logOut()" class="button button-full button-positive">Logout</button>-->
+</ion-content>
+</ion-view>

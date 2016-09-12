@@ -1,0 +1,79 @@
+﻿<ion-side-menus enable-menu-with-back-views="true">
+    <ion-side-menu-content>
+
+        <ion-nav-view name="menuContent">
+        </ion-nav-view>
+    </ion-side-menu-content>
+    <ion-side-menu class="sideMenu" side="left">
+        <div class="bar bar-header menuBar">
+            <div class="menuInnerDiv p5">
+                <a nav-clear menu-close ng-click="showLeftMenu()">
+                    Home
+                </a>
+            </div>
+        </div>
+        <ion-content class="menuContent"  cache-view="false">
+            <div ng-show="currentUser" class="text-center pt30">
+                <h4 ng-show="currentUser" style="color:#fff;" class="text-center">Welcome back,<h6 style="color:#000;">{{currentUser.email}}</h6></h4>
+            </div>
+
+            <div class="p15">
+                <div class="menuDiv p5" ng-hide="currentUser">
+                    <a href="#/login" >
+                        Sign In
+                    </a>  
+                </div>
+                
+                <div class="menuDiv p5">
+                    <a href="#/home" nav-clear menu-close ng-click="showRightMenu()">
+                        Provide Feedback
+                    </a>
+                </div>
+
+                <div ng-show="currentUser" class="menuDiv p5">
+                    <a href="#/app/useritems" nav-clear menu-close ng-click="showRightMenu()">
+                        My Posts
+                    </a>
+                </div>
+               
+                <div ng-show="currentUser" class="menuDiv p5">
+                    <a href="#/app/usercomments" nav-clear menu-close ng-click="showRightMenu()">
+                        My Quotes
+                    </a>
+                </div>
+               
+                <div class="menuDiv p5" ng-show="currentUser" >
+                    <a nav-clear menu-close ng-click="search()">
+                        Edit Profile
+                    </a>
+                </div>
+
+                <div class="menuDiv p5" ng-show="currentUser">
+                    <a  nav-clear menu-close ng-click="showRightMenu()">
+                        My Connections
+                    </a>
+                </div>
+                
+                <div class="menuDiv p5" ng-show="currentUser" >
+                    <a href="#/app/nearme" nav-clear menu-close ng-click="showRightMenu()">
+                        Notifications
+                    </a>
+                </div>
+
+                <div class="menuDiv p5">
+                    <a href="#/app/help" nav-clear menu-close ng-click="closeMenuLeft()">
+                        Legal & Privacy Policy
+                    </a>
+                </div>
+               
+                <div class="menuDiv p5" ng-show="currentUser">
+                    <a href="javascript:void(0);" ng-click="signOut()"  nav-clear menu-close>
+                        Sign out
+                    </a>
+                </div>
+                
+
+            </div>
+        </ion-content>
+    </ion-side-menu>
+</ion-side-menus>

@@ -1,0 +1,35 @@
+<ion-view view-title="Forgot Password" hide-back-button="true" class="login-bg" cache-view="false">
+  <ion-content class="padding-top">
+      <div class="row">
+          <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+      </div>
+   
+    <form name="forgotForm" novalidate ng-submit="forgotForm.$valid && resetpassword(user)">
+   <div class="list">
+    <!--  <label class="item item-input item-floating-label" ng-class="{ 'has-error' : forgotForm.txtemail.$invalid && forgotForm.$submitted }">
+        <span class="input-label">Email</span>
+        <input name="txtemail" ng-model="user.email" placeholder="Email" type="email"
+        ng-minlength="5"
+        ng-maxlength="30"
+        required>
+      </label>-->
+       <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+           <!--  <span class="input-label">Email</span> -->
+           <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
+                  ng-minlength="5"
+                  ng-maxlength="30"
+                  required>
+       </div>
+      <div class="form-errors" ng-messages="forgotForm.txtemail.$error" ng-if="forgotForm.$submitted">
+        <div class="form-error" ng-message="required">This field is required</div>
+        <div class="form-error" ng-message="email">This field is must be an email.</div>
+        <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+        <div class="form-error" ng-message="maxlength">This field is must be less than 30 characters.</div>
+      </div>
+       <div class="padding-top">
+           <input type="submit" value="Reset Password" class="login-button" />
+       </div>
+    </div>
+  </form>
+  </ion-content>
+</ion-view>
