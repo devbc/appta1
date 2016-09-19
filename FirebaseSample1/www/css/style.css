@@ -265,6 +265,24 @@ ion-slide img {
     text-decoration:none;
     color:#fff;
 }
+
+/******Item Page******/
+
+.item-button {
+    border-radius: 20px !important;
+    padding: 10px;
+    margin-top: 0px;
+    width: 40% !important;
+    height: 22% !important;
+    margin-left: 30%;
+    text-align: center;
+}
+
+.item-nav {
+    height:7%;
+    margin-top:0;
+    z-index:999;
+}
 /**********Home Page************/
 .titleBar {
     background-color: #421160;

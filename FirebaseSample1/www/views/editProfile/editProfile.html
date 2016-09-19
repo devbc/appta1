@@ -1,0 +1,42 @@
+﻿<ion-view view-title="Edit Profile" class="login-bg" cache-view="false">
+    <ion-content class="padding-top">
+        <div class="row" id="toplinks">
+            <span>
+                <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
+            </span>
+        </div>
+        <form id="editProfileForm" name="editProfileForm" novalidate ng-submit="editProfile(user)">
+            <div class="list text-center padding">
+      <!--          <img ng-hide="currentUser.profilePic" ng-click="getCamera()" ng-src="{{user.profilePic}}" style="border-radius: 50%; "> -->
+                <img ng-click="getCamera()" ng-model="user.profilePic" ng-src="{{user.profilePic}}" style="border-radius: 50%;">
+            </div>
+            <div class="list">
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" >
+                    <input name="name" type="text" ng-model="user.fullName" placeholder="Full Name"
+                           ng-maxlength="50" readonly
+                           required>
+                </div>
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label">
+                    <input name="handle" type="text" ng-model="user.handle" placeholder="Handle"
+                           ng-maxlength="30" readonly
+                           required>
+                </div>
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label">
+                        <input name="txtemail" type="text" ng-model="user.email" placeholder="Email"
+                               ng-minlength="5"
+                               ng-maxlength="50"
+                               required readonly>                  
+                </div>
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label">
+                    <input name="phone" type="tel" ng-model="user.phone" placeholder="Mobile No."
+                           ng-minlength="9"
+                           ng-maxlength="14"
+                           required>
+                </div>
+            </div>
+            <div class="padding-top">
+                <input type="submit" value="Update Profile" class="login-button" />
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

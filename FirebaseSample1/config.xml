@@ -118,4 +118,5 @@
   <plugin name="cordova-plugin-device" version="1.1.2" />
   <plugin name="cordova-plugin-compat" version="1.0.0" />
   <plugin name="cordova-plugin-file" version="4.2.0" />
+  <plugin name="cordova-plugin-inappbrowser" version="1.5.0" />
 </widget>

@@ -1,11 +1,41 @@
 'Use Strict';
 angular.module('App').controller('loginController', function ($rootScope, $scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$firebaseAuth , $firebaseObject,$log, Auth, FURL, Utils) {
-  //var ref = new Firebase(FURL);
+    //var ref = new Firebase(FURL);
+  jq('.wrapper').css('min-height', window.innerHeight);
+
+    //inputbox not_empty
+  jq('.inputbox').each(function () {
+      if (this.value) {
+          jq(this).addClass('not_empty');
+      } else {
+          jq(this).removeClass('not_empty');
+      }
+  });
+  $scope.inputChange = function () {
+      if (this.value) {
+          jq(this).addClass('not_empty');
+      } else {
+          jq(this).removeClass('not_empty');
+      }
+  };
+
   var auth = $firebaseAuth();
   //firebase.initializeApp(FURL);
   var ref = firebase.database().ref();
   var userkey = "";
   $scope.signIn = function (user) {
+   /*   alert("asas");
+      if (jq("#email").val() == "" || jq("#email").val() == undefined) {
+          jq("#email").parent().addClass('error');
+          jq("#email").parent().removeClass('success');
+          return false;
+      }
+      if (jq("#pass").val() == "" || jq("#pass").val() == undefined) {
+          jq("#pass").parent().addClass('error');
+          jq("#pass").parent().removeClass('success');
+          return false;
+      }
+      */
     $log.log("Enviado");
     if(angular.isDefined(user)){
     Utils.show();
@@ -28,12 +58,14 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
                   for (var key in user1) {
                       if (user1.hasOwnProperty(key)) {
                           usr = user1[key];
+                          $rootScope.currentUserKey = key;
                        //   alert("usr:: " + JSON.stringify(usr));
                           break;
                       }
                   }
                 //  alert(usr.name + " .... " + usr.handle + " .. " + usr.address);
                   $rootScope.currentUser = usr;
+                  
               });
 
           /*    var ref1 = firebase.database().ref('/users');
@@ -62,82 +94,4 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
       });
     }
   };
-  
-/* SEEMS NOT WORKING WELL
-
-  $scope.loginWithGoogle =  function(){
-  var provider = new firebase.auth.GoogleAuthProvider();
-
- firebase.auth().signInWithPopup(provider).then(function(result) {
-
-    $log.log("Authenticated successfully with payload:", angular.toJson(result));
-    $state.go('home');
-  
-  })
-  .catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-  $log.error("error:", angular.toJson(error));
-});
-  ;
-  };
-
-*/
-
-/* SEEMS NOT WORKING WELL
-  $scope.loginWithFacebook =  function(){
-    var provider = new firebase.auth.FacebookAuthProvider();
-
- firebase.auth().signInWithPopup(provider).then(function(result) {
-
-    $log.log("Authenticated successfully with payload:", angular.toJson(result));
-    $state.go('home');
-  
-  })
-  .catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-  $log.error("error:", angular.toJson(error));
-});
-  ;
-  };
-  */
-  
-/* SEEMS NOT WORKING WELL
-  $scope.loginWithTwitter =  function(){
-    var provider = new firebase.auth.FacebookAuthProvider();
-
- firebase.auth().signInWithPopup(provider).then(function(result) {
-
-    $log.log("Authenticated successfully with payload:", angular.toJson(result));
-    $state.go('home');
-  
-  })
-  .catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // The email of the user's account used.
-  var email = error.email;
-  // The firebase.auth.AuthCredential type that was used.
-  var credential = error.credential;
-  // ...
-  $log.error("error:", angular.toJson(error));
-});
-  ;
-  };
-*/
-
 });

@@ -94,5 +94,31 @@
         },
         "is_top_level": true,
         "variables": {}
+    },
+    "cordova-plugin-inappbrowser": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-inappbrowser@1.5.0"
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "com.cordova.plugins.sms": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cordova-sms/cordova-sms-plugin.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
+    },
+    "cordova-plugin-x-socialsharing": {
+        "source": {
+            "type": "git",
+            "url": "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
+            "subdir": "."
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

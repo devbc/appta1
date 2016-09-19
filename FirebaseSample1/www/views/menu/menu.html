@@ -14,7 +14,10 @@
         </div>
         <ion-content class="menuContent"  cache-view="false">
             <div ng-show="currentUser" class="text-center pt30">
-                <h4 ng-show="currentUser" style="color:#fff;" class="text-center">Welcome back,<h6 style="color:#000;">{{currentUser.email}}</h6></h4>
+
+                <img ng-hide="currentUser.profilePic" ng-src="img/user.png" style="border-radius: 50%; float: left; margin-left: 20px; width:48px; height: 48px;">
+                <img ng-show="currentUser.profilePic" ng-src="{{currentUser.profilePic}}" style="border-radius: 50%; float: left; margin-left: 20px; width:48px; height: 48px;">
+                <span><h4 ng-show="currentUser" style="color:#fff;" class="text-center">Hello! <h6 style="color:#000;">{{currentUser.handle}}</h6></h4></span>
             </div>
 
             <div class="p15">
@@ -24,11 +27,11 @@
                     </a>  
                 </div>
                 
-                <div class="menuDiv p5">
-                    <a href="#/home" nav-clear menu-close ng-click="showRightMenu()">
-                        Provide Feedback
+                <div class="menuDiv p5" ng-show="currentUser">
+                    <a href="#/app/nearme" nav-clear menu-close ng-click="showRightMenu()">
+                        Notifications
                     </a>
-                </div>
+                </div>    
 
                 <div ng-show="currentUser" class="menuDiv p5">
                     <a href="#/app/useritems" nav-clear menu-close ng-click="showRightMenu()">
@@ -42,8 +45,14 @@
                     </a>
                 </div>
                
+                <div class="menuDiv p5">
+                    <a href="javascript:void(0);" nav-clear menu-close ng-click="sendSms()">
+                        Invite co-workers
+                    </a>
+                </div>
+
                 <div class="menuDiv p5" ng-show="currentUser" >
-                    <a nav-clear menu-close ng-click="search()">
+                    <a href="#/editProfile" nav-clear menu-close>
                         Edit Profile
                     </a>
                 </div>
@@ -54,14 +63,8 @@
                     </a>
                 </div>
                 
-                <div class="menuDiv p5" ng-show="currentUser" >
-                    <a href="#/app/nearme" nav-clear menu-close ng-click="showRightMenu()">
-                        Notifications
-                    </a>
-                </div>
-
                 <div class="menuDiv p5">
-                    <a href="#/app/help" nav-clear menu-close ng-click="closeMenuLeft()">
+                    <a href="javascript:void(0);" nav-clear menu-close ng-click="openLegalPrivacyPage()">
                         Legal & Privacy Policy
                     </a>
                 </div>

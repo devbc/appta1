@@ -155,7 +155,11 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
               console.log(JSON.stringify(data.hits.total));
               if (data.hits.total != undefined && data.hits.total > 0) {
                   jq.each(data.hits.hits, function (key, value) {
-                      $scope.newestItems.push(value._source);
+                      var itemData = {
+                           "id":value._id,
+                          "data":value._source
+                      }
+                      $scope.newestItems.push(itemData);
                   });
               }
               Utils.hide();

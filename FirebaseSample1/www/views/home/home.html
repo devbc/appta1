@@ -17,23 +17,22 @@
             </ion-refresher>
             <div ng-show="newestItems.length" style="background-color:aqua !important;" class="list" id="listContainer">
                
-                <div ng-repeat="item in newestItems">
+                <div ng-repeat="item in newestItems" ng-click="">
                     <div ng-class="$even ? 'odd' : 'even'">
-                        <a href="#/app/item/{{item.id}}">
+                        <a ng-href="#/item/{{item.id}}">
                             <div class="itemHolder" ng-style="{height:itemHeight+'px'}">
                                 <div style="background: no-repeat center center; width: 150px; height:104px;">
-                                    <img src="{{item.itemPicture}}" width="150" height="104" />
+                                    <img src="{{item.data.itemPicture}}" width="150" height="104" />
                                 </div>
                                 <div style="width:150px; height:18px;">
-                                    <span>{{item.itemName | limitTo:40}}</span>
+                                    <span>{{item.data.itemName | limitTo:40}}</span>
                                 </div>
                                 <div style="width:150px; height:18px;">
-                                    <span>{{item.itemPrice}}</span>|<span>{{item.itemLocation | limitTo:40}}</span>
+                                    <span>{{item.data.itemPrice}}</span>|<span>{{item.data.itemLocation | limitTo:40}}</span>
                                 </div>
                             </div>
                         </a>
                     </div>
-
                 </div>
             </div>
         <!--</ion-scroll> -->
