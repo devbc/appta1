@@ -58,6 +58,16 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
              templateUrl: 'views/item/item.html',
              controller: 'itemController'
          })
+        .state('myPosts', {
+            url: '/myPosts',
+            templateUrl: 'views/myPosts/myPosts.html',
+            controller: 'myPostsController'
+        })
+        .state('myQuotes', {
+            url: '/myQuotes',
+            templateUrl: 'views/myQuotes/myQuotes.html',
+            controller: 'myQuotesController'
+        })
     ;
     $urlRouterProvider.otherwise("app/home");
 })

@@ -1,0 +1,106 @@
+<ion-view view-title="Register" class="login-bg" cache-view="false">
+    <ion-content class="padding-top">
+        <div class="row" id="toplinks">
+            <span>
+                <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+            </span>
+            <span class="align-right">
+                <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
+            </span>
+        </div>
+        <div class="list text-center padding">
+            <img id="appLogo" ng-src="../../img/app-logo.gif" />
+        </div>
+        <form id="registerForm" name="registerForm" novalidate ng-submit="registerForm.$valid && register(user)"
+              ng-class="{ 'has-error' : registerForm.txtemail.$invalid && registerForm.$submitted }">
+            <div class="list">
+                <!--  <label class="item item-input item-floating-label">
+                    <span class="input-label">Email</span>
+                  <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
+                  ng-minlength="5"
+                  ng-maxlength="30"
+                  required>
+                </label> -->
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                    <!--  <span class="input-label">Email</span> -->
+                    <input name="name" type="text" ng-model="user.name" placeholder="Full Name"
+                           ng-maxlength="30"
+                           required>
+                </div>
+                <div class="form-errors" ng-messages="registerForm.name.$error" ng-if="registerForm.$submitted">
+                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
+                    <div class="form-error" ng-message="name">This field is must be your name.</div>
+                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
+                </div>
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                    <!--  <span class="input-label">Email</span> -->
+                    <input name="handle" type="text" ng-model="user.handle" placeholder="Handle"
+                           ng-maxlength="30"
+                           required>
+                </div>
+                <div class="form-errors" ng-messages="registerForm.handle.$error" ng-if="registerForm.$submitted">
+                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
+                    <div class="form-error" ng-message="handle">This field is must be an email.</div>
+                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
+                </div>
+                <div class="row inner-addon left-addon item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                    <!--  <span class="input-label">Email</span> -->
+                    <span style="margin-left: 15%;border-bottom: 1px #9c9c9c solid !important; width: 32%;">
+                        <input class="reg-email" name="txtemail" type="text" ng-model="user.email" placeholder="Email"
+                               ng-minlength="5"
+                               ng-maxlength="30"
+                               required>
+                    </span>
+                    <span class="emailspan">@</span>
+                    <span style="margin-left: 1%;border-bottom: 1px #9c9c9c solid !important; width: 35%;">
+                      <!--  <select class="reg-email" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = domainList[0].domain"  ng-options="domain.value as domain.domain for domain in domainList" required> -->
+                        <select class="reg-email" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = 'none'">
+                            <option value="none">Select</option>
+                            <option ng-repeat="domain in domainList" value="{{domain}}">{{domain.domain}}</option>
+                        </select>
+                    </span>
+
+                </div>
+                <div class="form-errors" ng-messages="registerForm.emailDomain.$error" ng-if="registerForm.$submitted">
+                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
+                    <div class="form-error" ng-message="email">This field is must be an email.</div>
+                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
+                </div>
+                <!--    <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.txtpassword.$invalid  && registerForm.$submitted}">
+                    <span class="input-label">Password</span>
+                    <input name="txtpassword" type="password" ng-model="user.password" placeholder="Password"
+                    ng-minlength="5"
+                    ng-maxlength="25"
+                    required>
+                  </label> -->
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                    <input name="txtPassword" type="password" ng-model="user.password" placeholder="Password"
+                           ng-minlength="6"
+                           ng-maxlength="30"
+                           required>
+                </div>
+                <div class="form-errors" ng-messages="registerForm.txtpassword.$error" ng-if="registerForm.$submitted">
+                    <div class="form-error" ng-message="required">Debes ingresar una Contraseña.</div>
+                    <div class="form-error" ng-message="minlength">Ops, parece ser muy corta las Contraseña.</div>
+                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande las Contraseña.</div>
+                    <div class="form-error" ng-message="pattern">Debe ingresar solo caracteres letras y numeros.</div>
+                </div>
+                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                    <input name="phone" type="tel" ng-model="user.mobile" placeholder="Mobile No."
+                           ng-minlength="9"
+                           ng-maxlength="14"
+                           required>
+                </div>
+                <div class="form-errors" ng-messages="registerForm.phone.$error" ng-if="registerForm.$submitted">
+                    <div class="form-error" ng-message="required">Debes ingresar una Contraseña.</div>
+                    <div class="form-error" ng-message="minlength">Ops, parece ser muy corta las Contraseña.</div>
+                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande las Contraseña.</div>
+                    <div class="form-error" ng-message="pattern">Debe ingresar solo caracteres letras y numeros.</div>
+                </div>
+            </div>
+            <div class="padding-top">
+                <input type="submit" value="Register" class="login-button" />
+            </div>
+        </form>
+    </ion-content>
+</ion-view>

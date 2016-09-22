@@ -1,0 +1,79 @@
+<ion-view view-title="Login" hide-back-button="true" class="login-bg" cache-view="false">
+    <ion-content class="padding-top">
+        <div class="row">
+            <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
+        </div>
+      <!--    <div class="wrapper">
+            <section>
+                <a class="main_logo" href="#"><span class="logo">Appt</span><span class="dots">:</span></a>
+                <form class="login_form">
+                    <ul class="form_list">
+                        <li>
+                            <div class="input_wrap input_user">
+                                <input class="inputbox" type="text" id="name">
+                                <label for="name">Username</label>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="input_wrap input_pass">
+                                <input class="inputbox" type="password" id="pass">
+                                <label for="pass">Password</label>
+                            </div>
+                        </li>
+                        <li class="buttons">
+                            <button class="button" type="submit">Sign in</button>
+                        </li>
+                    </ul>
+                </form>
+                <ul class="form_links">
+                    <li><a href="#">Forgot password</a></li>
+                    <li><a href="#">New to Appt:?</a></li>
+                </ul>
+            </section>
+        </div>-->
+        <div class="list text-center padding">
+              <img id="appLogo" ng-src="../../img/app-logo.gif"/>
+          </div>
+          <form novalidate id="loginForm" name="loginForm" ng-submit="loginForm.$valid && signIn(user)">
+              <div class="list">
+                  <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                      <i class="icon ion-android-contact placeholder-icon" style="color:#fff; left:0; margin-left:0;"></i>
+                      <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
+                             ng-minlength="5"
+                             ng-maxlength="30"
+                             required>
+                  </div>
+                  <div class="form-errors" ng-messages="loginForm.txtemail.$error" ng-if="loginForm.$submitted">
+                      <div class="form-error" ng-message="required">This field is required.</div>
+                      <div class="form-error" ng-message="email">This field is must be an email.</div>
+                      <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+                      <div class="form-error" ng-message="maxlength">This field is must be less than 30 characters.</div>
+                  </div>
+
+                  <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                      <i class="icon ion-key placeholder-icon" style="color:#fff; left:0; margin-left:0;"></i>
+                      <input name="txtPassword" type="password" ng-model="user.password" placeholder="Password"
+                             ng-minlength="5"
+                             ng-maxlength="30"
+                             required>
+                  </div>
+                  <div class="form-errors" ng-messages="loginForm.txtPassword.$error" ng-if="loginForm.$submitted">
+                      <div class="form-error" ng-message="required">This field is required.</div>
+                      <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+                      <div class="form-error" ng-message="maxlength">This field is must be less than 30 characters.</div>
+                  </div>
+              </div>
+              <div class="padding-top">
+                  <input type="submit" class="login-button" value="Sign In">
+
+              </div>
+              <div class="login-sep"></div>
+              <div class="row login-links">
+                  <a href="#/forgot" nav-direction="forward" class="login-right-icon button button-clear button-light">Forgot Password?<span class="login-link-icon icon-right ion-chevron-right"></span></a>
+              </div>
+              <div class="row login-links">
+                  <a href="#/register" nav-direction="forward"  class="login-right-icon button button-clear button-light">Register<span class="login-link-icon icon-right ion-chevron-right"></span></a>
+              </div>
+          </form> 
+    </ion-content>
+</ion-view>

@@ -3,7 +3,7 @@
         <div style="width:100%; height:100%; background-image:url({{item.itemPicture }});" id="firstView" ng-show="displayFirst">
             <div class="padding-bottom" style="position:fixed; bottom:80px; width:100%;">
                 <input type="button" value="Ask" class="item-button odd" style="background-color: white; border:#a91cfd 0.5px solid; color:#a91cfd;"/>
-                <input type="button" value="Make an Offer" class="item-button even" style="background-color: #a91cfd; color:#fff;"/>
+                <input type="button" value="Make an Offer" class="item-button even" style="background-color: #a91cfd; color:#fff;" ng-click="makeAnOffer()"/>
             </div>
             <div class="padding-bottom" style="position:fixed; bottom:15px; width:100%;">
                 <a ng-click="showMoreDetails();" nav-direction="enter" class="button icon-left ion-chevron-down button-clear button-light" style="margin-left:45%;"></a>

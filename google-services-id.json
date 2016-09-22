@@ -1,0 +1,73 @@
+{
+  "project_info": {
+    "project_number": "925721977382",
+    "firebase_url": "https://buyandsell-26251.firebaseio.com",
+    "project_id": "buyandsell-26251",
+    "storage_bucket": "buyandsell-26251.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925721977382:android:ddd4d9535686b187",
+        "android_client_info": {
+          "package_name": "com.bluechilly.bns"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925721977382-kcl8sbumm3p4obqt4f5qag338igq7afs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_eW2BTWhHxQpfIwMs1Rh8ZFtjSRCXLYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:925721977382:android:de618ea9f1f06685",
+        "android_client_info": {
+          "package_name": "io.cordova.myappd7a794"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "925721977382-kcl8sbumm3p4obqt4f5qag338igq7afs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_eW2BTWhHxQpfIwMs1Rh8ZFtjSRCXLYw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

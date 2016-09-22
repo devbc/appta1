@@ -91,7 +91,7 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
                   },
                 {
                     "created_on": { "order": "desc", "mode": "max" }
-                },               
+                }/*,               
                 {
                     "_geo_distance": {
                         "location": {
@@ -99,12 +99,9 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
                             "lon": -121.9312227,
                         },                     
                         "order": "asc",
-                        "unit": "km", 
-                        
-                    //    "missing":"_last"
-                    //    "distance_type": "plane" 
+                        "unit": "km"
                     }
-                }
+                }*/
               
           ]
       }
@@ -125,16 +122,6 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
      alert(JSON.stringify(data.error));
      console.log("Error: " + JSON.stringify(data.error));
      });*/
-
-      var query = {
-          query: {
-              filtered: {
-                  filter: {
-                      term: { "itemTitle": "pencil" }
-                  }
-              }
-          }
-      }
 
       jq.ajax({
           //url: "http://localhost:9200/items/_search",
@@ -166,7 +153,7 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
           },
           error: function (data) {
             //  alert(JSON.stringify(data.error));
-              console.log("Error: " + JSON.stringify(data.error));
+              console.log("Error: " + JSON.stringify(data));
           },
           data: JSON.stringify(qu)
       });

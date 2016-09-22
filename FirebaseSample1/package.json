@@ -1,7 +1,12 @@
 {
-    "name": "FirebaseSample1",
-    "version": "1.0.0",
-    "private": true,
-    "dependencies": {
-    }
+  "name": "FirebaseSample1",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {},
+  "cordovaPlugins": [
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-fcm",
+    "cordova-plugin-velda-devicefeedback"
+  ],
+  "cordovaPlatforms": []
 }
