@@ -68,6 +68,11 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
             templateUrl: 'views/myQuotes/myQuotes.html',
             controller: 'myQuotesController'
         })
+        .state('offerList', {
+            url: '/offers/:itemId',
+            templateUrl: 'views/offerList/offerList.html',
+            controller: 'offerListController'
+        })
     ;
     $urlRouterProvider.otherwise("app/home");
 })
@@ -79,9 +84,9 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
     storageBucket: "buyandsell-26251.appspot.com",
 }
   )
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $cordovaSQLite) {
     $ionicPlatform.ready(function (FURL) {
-
+       
 
         // AdMob
         if (window.AdMob) {
@@ -120,6 +125,25 @@ angular.module('App', ['ionic', 'ngStorage', 'ngCordova', 'firebase', 'ngMessage
         if (window.StatusBar) {
             StatusBar.styleDefault();
         }
+
+     /*   //run the app in background
+        // Android customization
+        cordova.plugins.backgroundMode.setDefaults({ text: 'Doing heavy tasks.' });
+        // Enable background mode
+        cordova.plugins.backgroundMode.enable();
+
+        // Called when background mode has been activated
+        cordova.plugins.backgroundMode.onactivate = function () {
+            setTimeout(function () {
+                // Modify the currently displayed notification
+                cordova.plugins.backgroundMode.configure({
+                    text: 'Running in background for more than 5s now.',
+                    silent: true
+                });
+            }, 5000);
+        }*/
+
+        
     });
 })
 ;

@@ -1,0 +1,48 @@
+﻿<ion-view view-title="Login" hide-back-button="true" class="add-bg" cache-view="false">
+    <ion-content class="">
+        <div class="row modal-bg add-nav" id="toplinks">
+            <span>
+                <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
+            </span>
+        </div>
+        <ion-scroll id="itemScroll" direction="y" style="background-color:#fff; width: 100%; margin-top: 50px;" on-scroll="scrolled()">
+            <div ng-show="myItems.length" style="background-color:aqua !important;" class="list" id="listContainer">
+
+                <div ng-repeat="item in myItems" ng-click="">
+
+                    
+                        <div class="listTile" ng-style="{height:itemHeight+'px'}">
+                            <div class="odd" style="background: no-repeat center center; width: 120px; height:120px; padding:10px; border: 0.5px solid #efefef;">
+                               <a ng-href="#/item/{{item.id}}">
+                                 <img src="{{item.data.itemPicture}}" width="100" height="100" />
+                                </a>
+                            </div>
+                            <div class="even" style="width:220px; height:150px;">
+                                <div style="margin-right:15px;">
+                                    <span>{{item.createdon}}</span>
+                                </div>
+                                <div>
+                                    <span>{{item.data.itemName | limitTo:40}}</span>
+                                </div>
+                                <div style="width:150px; height:20px;">
+                                    <span>$ {{item.data.itemPrice}}</span>
+                                </div>
+                                <div style="width:150px; height:20px;">
+                                    <span>{{item.offerState}} </span>
+                                </div>
+                                <div class="row" ng-show="item.offerState=='Accepted'">
+                                    <span style="margin:7px; font-size:16px;">Call</span>|<span style="margin:7px; font-size:16px;" ng-click="textOfferor(item.data.owner)">Text</span>
+                                </div>
+                                <div class="row" ng-show="item.offerState=='Rejected'">
+                                    <span style="margin:7px; font-size:16px;" ng-click="updateOffer(item.offerId)">Make an offer</span> 
+                                </div>
+                                <div class="row" ng-show="item.offerState=='No Response'">
+                                    <span style="margin:7px; font-size:16px;">Poke</span>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </ion-scroll>
+    </ion-content>
+</ion-view>

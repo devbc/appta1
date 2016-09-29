@@ -10,6 +10,33 @@ angular.module('App').controller('registerController', function ($scope, $state,
         $scope.domainList = res;
     });
 
+    $scope.addToken = function (key) {
+
+        FCMPlugin.getToken(
+                  function (token) {
+                      alert(token);
+                      alert($rootScope.currentUserKey);
+                      var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
+                      obj.$loaded().then(function (data) {
+                          alert("loaded   " + token);
+                          obj.uToken = token;
+                          obj.$save().then(function (ref) {
+                              //     console.log(ref);
+                              alert("Token Updated Successfully.");
+                              //    $state.go('app.home');
+                              return;
+                          }, function (error) {
+                              Utils.alertshow("Error:", error);
+                          });
+                      });
+                  },
+                  function (err) {
+                      alert('error retrieving token: ' + err);
+                  }
+                );
+
+    }
+
   $scope.register = function(user) {
     if(angular.isDefined(user)){
         Utils.show();

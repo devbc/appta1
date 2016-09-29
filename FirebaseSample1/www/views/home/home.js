@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('homeController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $log, $location, $http, $ionicPopup, $firebaseObject, $ionicSideMenuDelegate, Auth, FURL, Utils, $firebaseArray, $ionicScrollDelegate) {
+angular.module('App').controller('homeController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $log, $location, $http, $ionicPopup, $firebaseObject, $ionicSideMenuDelegate, Auth, FURL, Utils, $firebaseArray, $ionicScrollDelegate, $cordovaPreferences, $ionicPlatform) {
 
     var h = window.innerHeight;
     //    document.getElementById("itemScroll").style.height = h - 50;
@@ -12,7 +12,24 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
     var ref = firebase.database().ref();
     $scope.itemList = $firebaseArray(firebase.database().ref().child("items"));
     $scope.isScrolling = false;
-   
+
+  /*  $ionicPlatform.ready(function () {
+        if (!$rootScope.currentUser) {
+            $cordovaPreferences.fetch('userDetails')
+            .success(function (value) {
+                alert("inside SUCCESS");
+                var userJSON = JSON.parse(value);
+                $rootScope.currentUser = userJSON.user;
+                $rootScope.currentUserKey = userJSON.key;
+            })
+            .error(function (error) {
+                $rootScope.currentUser = null;
+                $rootScope.currentUserKey = null;
+                alert("Error no user in preferences: " + error);
+            })
+        }
+    });*/
+
   $scope.logOut = function () {
       Auth.logout();
       $location.path("/login");
@@ -75,15 +92,23 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
       };
       
       var qu = {
-
+         // "from":0,
+        //  "size": 11,
           "query": {
+              
+          //   "match_all" : {},
               "bool": {
                   "must": [
                       { "match": { "sold": "N" } },
-                      { "match": { "approved": true } }
+                      { "match": { "approved": true } },
+                      { "match": { "blocked": false } }
+                  ],
+                  "must_not": [
+                      { "match": { "email":"shaiwal_sharma@yahoo.com"  } }
                   ]
                   
-              }
+              },
+
           },
           "sort": [
                   {
@@ -91,7 +116,7 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
                   },
                 {
                     "created_on": { "order": "desc", "mode": "max" }
-                }/*,               
+                },               
                 {
                     "_geo_distance": {
                         "location": {
@@ -101,7 +126,7 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
                         "order": "asc",
                         "unit": "km"
                     }
-                }*/
+                }
               
           ]
       }
@@ -142,6 +167,7 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
               console.log(JSON.stringify(data.hits.total));
               if (data.hits.total != undefined && data.hits.total > 0) {
                   jq.each(data.hits.hits, function (key, value) {
+                      console.log(key);
                       var itemData = {
                            "id":value._id,
                           "data":value._source

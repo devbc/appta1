@@ -1,0 +1,112 @@
+'Use Strict';
+angular.module('App').controller('loginController', function ($rootScope, $scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$firebaseAuth , $firebaseObject,$log, Auth, FURL, Utils, $cordovaPreferences, $cordovaSQLite) {
+    //var ref = new Firebase(FURL);
+  jq('.wrapper').css('min-height', window.innerHeight);
+
+    //inputbox not_empty
+  jq('.inputbox').each(function () {
+      if (this.value) {
+          jq(this).addClass('not_empty');
+      } else {
+          jq(this).removeClass('not_empty');
+      }
+  });
+  $scope.inputChange = function () {
+      if (this.value) {
+          jq(this).addClass('not_empty');
+      } else {
+          jq(this).removeClass('not_empty');
+      }
+  };
+
+  $scope.addToken = function (key) {
+
+      FCMPlugin.getToken(
+                function (token) {
+                  
+                    var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
+                    obj.$loaded().then(function (data) {
+                        obj.uToken = token;
+                        obj.$save().then(function (ref) {
+                          
+                            return;
+                        }, function (error) {
+                            Utils.alertshow("Error:", error);
+                        });
+                    });
+                },
+                function (err) {
+                    alert('error retrieving token: ' + err);
+                }
+              );
+
+  }
+  var auth = $firebaseAuth();
+  var ref = firebase.database().ref();
+  var userkey = "";
+  $scope.signIn = function (user) {
+
+    $log.log("Enviado");
+    if(angular.isDefined(user)){
+    Utils.show();
+    Auth.login(user)
+      .then(function (authData) {
+          $log.log("id del usuario:" + authData);
+          if (authData.emailVerified) {
+              Utils.hide();
+            
+              var userId = authData.uid;
+          
+              var x = firebase.database().ref('/users').orderByChild("email").equalTo(authData.email).once('value').then(function (snapshot) {
+                  var user1 = snapshot.val();
+                  var usr;
+                  for (var key in user1) {
+                      if (user1.hasOwnProperty(key)) {
+                          usr = user1[key];
+                          $rootScope.currentUserKey = key;
+                          $scope.addToken(key);
+                          break;
+                      }
+                  }
+                  $rootScope.currentUser = usr;
+                  /*      var userDetails = {
+                      "user": $rootScope.currentUser,
+                      "key": $rootScope.currentUserKey
+                  }
+               $cordovaPreferences.store('userDetails', JSON.stringify(userDetails))
+                 .success(function (value) {
+                     alert("Success STORED: " + value);
+                 })
+                 .error(function (error) {
+                     alert("Error: " + error);
+                 });*/
+                  
+              });
+
+           
+            
+        
+                //  var db = $cordovaSQLite.openDB({ name: "appta.db", location: 'default' });
+        /*      alert("login js:: "+db);
+                  var query = "INSERT INTO USER_DETAILS (user, key) VALUES (?,?)";
+                  $cordovaSQLite.execute(window.db, query, [JSON.stringify($rootScope.currentUser), $rootScope.currentUserKey]).then(function (res) {
+                      alert("INSERT ID -> " + res.insertId);
+                  }, function (err) {
+                      alert(err);
+                  });*/
+             
+
+              $state.go('app.home');
+              $log.log("Starter page", "Home");
+          } else {
+              Utils.hide();
+              Utils.alertshow("Error", "Please verify your email.");
+              Auth.logout();
+          }        
+      }, function(err) {
+        Utils.hide();
+         Utils.errMessage(err);
+      });
+    }
+  };
+});

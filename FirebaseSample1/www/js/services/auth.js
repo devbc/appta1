@@ -8,6 +8,20 @@ angular.module('App').factory('Auth', function(FURL, $log, $firebaseAuth, $fireb
  
   //var auth = $firebaseObject(ref);
   var auth = $firebaseAuth();
+    
+
+   /* try {
+      //  var authref = $firebaseAuth(ref);
+        auth.$onAuth(function (authData) {
+            if (authData) {
+                console.log("Logged in as:", authData.uid);
+            } else {
+                console.log("Logged out");
+            }
+        });
+    } catch (e) {
+        alert(e);
+    }*/
 
 	var Auth = {
 		user: {},

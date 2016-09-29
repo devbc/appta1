@@ -65,6 +65,26 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
                   }
                 //  alert(usr.name + " .... " + usr.handle + " .. " + usr.address);
                   $rootScope.currentUser = usr;
+               /*   FCMPlugin.getToken(
+                     function (token) {
+                         alert(token);
+                         var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
+                         obj.$loaded().then(function (data) {
+
+                             obj.uToken = toek;
+                             obj.$save().then(function (ref) {
+                                 //     console.log(ref);
+                                 alert("Token Updated Successfully.");
+                                 $state.go('app.home');
+                             }, function (error) {
+                                 Utils.alertshow("Error:", error);
+                             });
+                         });
+                     },
+                     function (err) {
+                         alert('error retrieving token: ' + err);
+                     }
+                   );*/
                   
               });
 

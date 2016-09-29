@@ -3,7 +3,9 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
     console.log($stateParams);
     $scope.itemId = $stateParams.item;
     $scope.displayFirst = true;
+    $scope.showQuestionText = false;
     $scope.item = {};
+    $scope.question = "";
     var ref = firebase.database().ref();
     var obj = $firebaseObject(ref.child("items").child($stateParams.item));
     obj.$loaded().then(function (data) {
@@ -14,6 +16,35 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
     $scope.showMoreDetails = function () {
         $scope.displayFirst = false;
         loadMap();
+    }
+
+    $scope.showQuestionDiv = function () {
+        $scope.showQuestionText = true;
+    }
+
+    $scope.askQuestion = function (question) {
+        console.log($scope.question);
+        var offerJSON = {
+            "answerer": $scope.item.owner,
+            "questioner": $rootScope.currentUser.email,
+            "faq":"N",
+            "questionText": question,
+            "answerText": "",
+            "created_on": new Date().getTime(),
+            "block": "N",
+            "itemId": $scope.itemId
+        }
+        var messagesRef = $firebaseArray(firebase.database().ref().child("questions"));
+        messagesRef.$loaded().then(function (res) {
+            messagesRef.$add(offerJSON).then(function (ref) {
+                $ionicPopup.alert({
+                    title: 'Info.',
+                    template: 'Your question will be delivered to the owner.'
+                });
+                $scope.showQuestionText = false;
+            });
+        });
+       
     }
 
     function loadMap() {

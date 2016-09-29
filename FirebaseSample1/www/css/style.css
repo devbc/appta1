@@ -372,6 +372,17 @@ ion-slide img {
    background-color: transparent;
    border:1px solid black;
 }
+
+
+/********My Posts*******/
+.listTile {
+   width: 100%;
+   background-color: #fff;
+   border-bottom:1px solid #efefef;
+
+}
+
+
 /** Error Messages **/
 
 /** Styling for the username field **/

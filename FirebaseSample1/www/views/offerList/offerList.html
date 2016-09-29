@@ -1,0 +1,111 @@
+﻿<ion-view view-title="Login" hide-back-button="true" class="add-bg" cache-view="false">
+    <ion-content class="">
+        <div class="row modal-bg item-nav" id="toplinks">
+            <span>
+                <a nav-direction="forward" style="color:#fff;" class="button icon-left ion-android-close button-clear button-light" ng-href="#/app/home"></a>
+            </span>
+            <span style="color:#fff;">
+                {{item.itemName}} | ${{item.itemPrice}} | {{item.user.org.name}}
+            </span>
+            <span class="align-right">
+                <a nav-direction="forward" class="button icon-right ion-android-favorite-outline button-clear button-light" ng-href="#/app/home"></a>
+            </span>
+        </div>
+      <div style="width:100%; height:100%;" id="firstView">
+          <ion-scroll id="itemScroll" direction="y" style="background-color:#fff; width: 100%; margin-top: 50px;" on-scroll="scrolled()">
+              <div ng-show="displayFirst">
+                  <div ng-show="offers.length" style="background-color:aqua !important;" class="list" id="listContainer">
+                      <div ng-repeat="ofr in offers" ng-click="">
+                          <a>
+                              <div class="listTile" ng-style="{height:itemHeight+'px'}">
+                                  <div class="odd" style="background: no-repeat center center;  border: 0.5px solid #efefef; border-radius: 50%; width: 70px; height:70px; padding:8px;">
+                                      <img src="{{ofr.offeror.profilePic}}" width="40" height="40" />
+                                  </div>
+                                  <div class="even" style="width:240px; height:80px;">
+                                      <div style="margin-right:15px;">
+                                          <span>${{ofr.offer.offeredPrice}}</span>
+                                      </div>
+                                      <div>
+                                          <span>by {{ofr.offeror.fullName | limitTo:40}}</span>|<span>{{ofr.offeror.org.name | limitTo:40}}</span>
+                                      </div>
+                                      <div class="row">
+                                          <span style="margin-left:7px; margin-right:7px; font-size:16px;" ng-click="rejectOffer(ofr);">Reject</span>|<span style="margin-left:7px; margin-right:7px; font-size:16px;" ng-click="counterOffer(ofr)">Counter Offer</span>|<span style="margin-left:7px; margin-right:7px; font-size:16px;" ng-click="blockOffer(ofr)">Block</span>
+                                      </div>
+                                      <div class="row">
+                                          <span style="margin-left:7px; margin-right:7px; font-size:16px;" ng-click="acceptOffer(ofr);">Accept</span>  |  <span style="margin-left:7px; margin-right:7px; font-size:16px;"><a ng-href="tel:{{ofr.offeror.phone}}">Call</a></span>  |  <span style="margin-left:7px; margin-right:7px; font-size:16px;" ng-click="textOfferor(ofr)">Text</span>                                      </div>
+                                      </div>
+                              </div>
+                          </a>
+                      </div>
+                  </div>
+              </div>
+              <div ng-hide="displayFirst">
+                  <div ng-show="questions.length" style="background-color:aqua !important;" class="list" id="qlistContainer">
+                      <div ng-repeat="ques in questions" ng-click="">
+
+                         
+                              <div class="listTile" ng-style="{height:itemHeight+'px'}">
+                                  <div class="odd" style="background: no-repeat center center;  border: 0.5px solid #efefef; border-radius: 50%; width: 70px; height:70px; padding:8px;">
+                                      <img src="{{ques.questioner.profilePic}}" width="40" height="40" />
+                                  </div>
+                                  <div class="even" style="width:240px; height:80px;">
+                                      <div style="margin-right:15px;">
+                                          <span>{{ques.questioner.fullName}}</span>
+                                      </div>
+                                      <div>
+                                          <span>by {{ques.question.questionText | limitTo:40}}</span>
+                                      </div>
+                                      <div style="margin-top:10px;">
+                                          <a ng-click="replyQuestions(ques)">Reply...</a>
+                                      </div>
+                                  </div>
+                              </div>
+                         
+
+                      </div>
+                  </div>
+              </div>
+          </ion-scroll>
+          <div ng-show="replyDiv" style="height:100%; width:100%; top:0; z-index:99; opacity:0.7; background-color:#000; position:fixed">
+                <div class="listTile" style="height:200px; bottom:0; position:fixed; width:100%; opacity:1;">
+                    <div class="row" style="bottom:100px; position:fixed;">
+                        <div class="odd" style="background: #fff no-repeat center center;  border: 0.5px solid #efefef; border-radius: 50%; width: 70px; height:70px; padding:8px;">
+                            <img src="{{replyQues.questioner.profilePic}}" width="40" height="40" />
+                        </div>
+                        <div class="even" style="width:240px; height:80px; color:#000;">
+                            <div style="margin-right:15px;">
+                                <span>{{replyQues.questioner.fullName}}</span>
+                            </div>
+                            <div>
+                                <span>by {{replyQues.question.questionText | limitTo:40}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row padding-bottom" style="position:fixed; bottom:15px; width:100%;">
+                        <form novalidate id="quesForm" name="replyForm" ng-submit="replyQue(reply)">
+                            <input type="button" ng-click="markFAQ()" style="display:inline-block; float:left; width:17%; margin-left:3%; height:30px;" value="+FAQ">
+                            <input type="text" style="display:inline-block; float:left; width: 54% !important; margin-left:3%;" ng-model="reply" placeholder="Type your question here">
+                            <input type="submit" style="display:inline-block; float:left; width:17%; margin-left:3%; height:30px;" value="Reply">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="padding-bottom" style="position:fixed; bottom:30px; width:100%;">
+                <input type="button" value="{{offerBtnText}}" class="item-button odd" style="background-color: white; border:#a91cfd 0.5px solid; color:#a91cfd;" ng-click="displayOffers()" />
+                <input type="button" value="{{questionBtnText}}" class="item-button even" style="background-color: #a91cfd; color:#fff;" ng-click="displayQuestions()" />
+            </div>
+      </div>
+       <!--   <div id="secondView" ng-hide="displayFirst" style="width:100%; height:100%; background-image:url({{item.itemPicture }});">
+            
+            <div clas="row" style="background-color:#fff; width:100%; height:93%; ">
+                <div class="row">
+                    Posted by @{{item.user.handle}} from {{item.user.org.name}}
+                </div>
+                <div id="map" class="row" data-tap-disabled="true" style="width:100%; height: 25%;"></div>
+                <div class="row">
+                    {{item.itemLocation}}
+                </div>
+            </div>
+        </div>-->
+    </ion-content>
+</ion-view>

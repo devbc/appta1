@@ -1,10 +1,49 @@
 ﻿'Use Strict';
-angular.module('App').controller('AppCtrl', function ($scope, $rootScope, $state, $timeout, $ionicSideMenuDelegate, $ionicLoading, $ionicModal, $ionicPopup, Auth, $location, $cordovaInAppBrowser, $cordovaSms, $cordovaSocialSharing) {
+angular.module('App').controller('AppCtrl', function ($scope, $rootScope, $state, $timeout, $ionicSideMenuDelegate, $ionicLoading, $ionicModal, $ionicPopup, Auth, $location, $cordovaInAppBrowser, $cordovaSms, $cordovaSocialSharing, $cordovaPreferences, $ionicPlatform, $cordovaSQLite) {
 
     $scope.showLeftMenu = function () {
         $ionicSideMenuDelegate.toggleLeft();
     };
 
+ /*   try {
+        firebase.auth().onAuth(function (authData) {
+            if (authData) {
+                console.log("User " + authData.uid + " is logged in with " + authData.provider);
+            } else {
+                console.log("User is logged out");
+            }
+        });
+    } catch (e) {
+        alert("onauth " + e);
+    }*/
+  
+  /*  $ionicPlatform.ready(function () {
+        if (!$rootScope.currentUser) {
+            $cordovaPreferences.fetch('userDetails')
+            .success(function (value) {
+                alert("inside SUCCESS");
+                var userJSON = JSON.parse(value);
+                $rootScope.currentUser = userJSON.user;
+                $rootScope.currentUserKey = userJSON.key;
+            })
+            .error(function (error) {
+                $rootScope.currentUser = null;
+                $rootScope.currentUserKey = null;
+                alert("Error no user in preferences: " + error);
+            })
+        }
+    });
+    $ionicPlatform.ready(function () {
+        try {
+            db = $cordovaSQLite.openDB({ name: "my.db" });
+          //  db = $cordovaSQLite.openDB({ name: "appta.db", location: 2, createFromLocation: 1 });
+            $cordovaSQLite.execute(db, "CREATE TABLE IF NOT EXISTS USER_DETAILS (user text, key text)");
+            alert("aap.js: " + db);
+        } catch (e) {
+            alert(e);
+        }
+    });
+    */
     $scope.openLegalPrivacyPage = function () {
         var options = {
             "location": "yes",
@@ -64,6 +103,7 @@ angular.module('App').controller('AppCtrl', function ($scope, $rootScope, $state
         firebase.auth().signOut().then(function () {
             console.log('Signed Out');
             $rootScope.currentUser = null;
+            $rootScope.currentUserKey = null;
         }, function (error) {
             console.error('Sign Out Error', error);
         });

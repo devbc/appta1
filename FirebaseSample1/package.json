@@ -6,7 +6,8 @@
   "cordovaPlugins": [
     "cordova-plugin-inappbrowser",
     "cordova-plugin-fcm",
-    "cordova-plugin-velda-devicefeedback"
+    "cordova-plugin-velda-devicefeedback",
+    "cordova-plugin-app-preferences"
   ],
   "cordovaPlatforms": []
 }
