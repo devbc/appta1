@@ -124,7 +124,7 @@
     "cordova-plugin-fcm": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-fcm"
+            "id": "cordova-plugin-fcm@1.1.4"
         },
         "is_top_level": true,
         "variables": {}
@@ -132,7 +132,7 @@
     "cordova-plugin-velda-devicefeedback": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-velda-devicefeedback"
+            "id": "cordova-plugin-velda-devicefeedback@0.0.2"
         },
         "is_top_level": true,
         "variables": {}
