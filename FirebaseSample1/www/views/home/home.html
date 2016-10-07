@@ -1,5 +1,5 @@
 <ion-view cache-view="false">
-    <ion-floating-button-left ng-click="showLeftMenu()" has-footer="false" button-color="#a91cfd" icon="ion-android-menu" iconColor="#fff">
+   <!-- <ion-floating-button-left ng-click="showLeftMenu()" has-footer="false" button-color="#a91cfd" icon="ion-android-menu" iconColor="#fff">
     </ion-floating-button-left>
     <ion-floating-button-right click="addNewItem()" has-footer="false" button-color="#a91cfd" icon="ion-plus" iconColor="#fff">
     </ion-floating-button-right>
@@ -11,7 +11,6 @@
         <a class="filter button button-icon icon ion-android-options"></a>
     </div>
     <ion-content on-scroll="scrolled()">
-     <!--   <ion-scroll id="itemScroll" direction="y" style="background-color:#f2f2f2; width: 100%; margin-top: 50px;" on-scroll="scrolled()">-->
             <ion-refresher pulling-text="Refreshing Feed..."
                            on-refresh="getHomeItems()">
             </ion-refresher>
@@ -34,10 +33,59 @@
                         </a>
                     </div>
                 </div>
+            </div>-->
+    <div class="header">
+        <div class="header_search">
+            <button class="header_filter"></button>
+            <form class="search_form">
+                <input class="inputbox" type="text" id="search">
+                <label for="search"><span></span></label>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer_inn">
+            <button ng-click="showLeftMenu()" class="menu"><span></span></button>
+            <button ng-click="addNewItem()" class="photo"></button>
+        </div>
+    </div>
+    <ion-content on-scroll="scrolled()">
+        
+        <div class="content bgf">
+            <div class="wrapper">
+          
+                <div class="ptop"></div>
+                <div class="container home">
+                    <ion-refresher pulling-text="Refreshing Feed..."
+                                   on-refresh="getHomeItems()">
+                    </ion-refresher>
+                    <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": ".grid_sizer",  "gutter": ".grid_gutter"}' ng-show="newestItems.length" id="listContainer">
+                        <div class="grid_sizer"></div>
+                        <div class="grid_gutter"></div>
+                        <div class="grid_item" ng-repeat="item in newestItems" style="padding-left:4px; padding-right:4px;">
+                            <a class="item_link" ng-href="#/item/{{item.id}}">
+                                <span class="item_img"><img ng-src="{{item.data.itemPicture}}"></span>
+                                <span class="item_foot">
+                                    <span class="grid_title">{{item.data.itemName | limitTo:40}}</span>
+                                    <span class="grid_price">{{item.data.itemPrice}}</span>
+                                    <span class="grid_model">{{item.data.user.org.name | limitTo:40}}</span>
+                                </span>
+                                <span class="item-label">new</span>
+                            </a>
+                        </div>
+                     <!--<div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item2.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item3.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item4.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item5.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item5.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item1.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span><span class="item-label">new</span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item2.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item3.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>
+                        <div class="grid_item"><a class="item_link" href="#"><span class="item_img"><img src="img/item4.jpg"></span><span class="item_foot"><span class="grid_title">Leather Sofa</span><span class="grid_price">$300</span><span class="grid_model">Zensar</span></span></a></div>-->
+                    </div>
+                </div>
             </div>
-        <!--</ion-scroll> -->
-            <!-- TODO Profile -->
-            <!-- <button ng-click="profile()" class="button button-outline button-assertive">Profile</button> -->
-            <!--   <button ng-click="logOut()" class="button button-full button-positive">Logout</button>-->
-</ion-content>
+        </div>
+
+    </ion-content>
 </ion-view>

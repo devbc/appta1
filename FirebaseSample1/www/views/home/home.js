@@ -7,11 +7,13 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
     $scope.itemHeight = 300;
     $scope.offset = 6;
     var topMargin = 50;
-    document.getElementById("listContainer").style.marginTop = topMargin+"px";
+  //  document.getElementById("listContainer").style.marginTop = topMargin+"px";
     $scope.newestItems = [];
     var ref = firebase.database().ref();
     $scope.itemList = $firebaseArray(firebase.database().ref().child("items"));
     $scope.isScrolling = false;
+
+    
 
   /*  $ionicPlatform.ready(function () {
         if (!$rootScope.currentUser) {
@@ -176,6 +178,12 @@ angular.module('App').controller('homeController', function ($rootScope, $scope,
                   });
               }
               Utils.hide();
+              //grid
+              jq('.grid').masonry({
+                  itemSelector: '.grid_item',
+                  columnWidth: '.grid_sizer',
+                  gutter: '.grid_gutter'
+              });
           },
           error: function (data) {
             //  alert(JSON.stringify(data.error));

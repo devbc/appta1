@@ -1,106 +1,107 @@
-<ion-view view-title="Register" class="login-bg" cache-view="false">
-    <ion-content class="padding-top">
-        <div class="row" id="toplinks">
-            <span>
-                <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
-            </span>
-            <span class="align-right">
-                <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
-            </span>
-        </div>
-        <div class="list text-center padding">
-            <img id="appLogo" ng-src="../../img/app-logo.gif" />
-        </div>
-        <form id="registerForm" name="registerForm" novalidate ng-submit="registerForm.$valid && register(user)"
-              ng-class="{ 'has-error' : registerForm.txtemail.$invalid && registerForm.$submitted }">
-            <div class="list">
-                <!--  <label class="item item-input item-floating-label">
-                    <span class="input-label">Email</span>
-                  <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
-                  ng-minlength="5"
-                  ng-maxlength="30"
-                  required>
-                </label> -->
-                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                    <!--  <span class="input-label">Email</span> -->
-                    <input name="name" type="text" ng-model="user.name" placeholder="Full Name"
-                           ng-maxlength="30"
-                           required>
-                </div>
-                <div class="form-errors" ng-messages="registerForm.name.$error" ng-if="registerForm.$submitted">
-                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
-                    <div class="form-error" ng-message="name">This field is must be your name.</div>
-                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
-                </div>
-                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                    <!--  <span class="input-label">Email</span> -->
-                    <input name="handle" type="text" ng-model="user.handle" placeholder="Handle"
-                           ng-maxlength="30"
-                           required>
-                </div>
-                <div class="form-errors" ng-messages="registerForm.handle.$error" ng-if="registerForm.$submitted">
-                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
-                    <div class="form-error" ng-message="handle">This field is must be an email.</div>
-                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
-                </div>
-                <div class="row inner-addon left-addon item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                    <!--  <span class="input-label">Email</span> -->
-                    <span style="margin-left: 15%;border-bottom: 1px #9c9c9c solid !important; width: 32%;">
-                        <input class="reg-email" name="txtemail" type="text" ng-model="user.email" placeholder="Email"
-                               ng-minlength="5"
-                               ng-maxlength="30"
-                               required>
-                    </span>
-                    <span class="emailspan">@</span>
-                    <span style="margin-left: 1%;border-bottom: 1px #9c9c9c solid !important; width: 35%;">
-                      <!--  <select class="reg-email" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = domainList[0].domain"  ng-options="domain.value as domain.domain for domain in domainList" required> -->
-                        <select class="reg-email" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = 'none'">
-                            <option value="none">Select</option>
-                            <option ng-repeat="domain in domainList" value="{{domain}}">{{domain.domain}}</option>
-                        </select>
-                    </span>
-
-                </div>
-                <div class="form-errors" ng-messages="registerForm.emailDomain.$error" ng-if="registerForm.$submitted">
-                    <div class="form-error" ng-message="required">Debes ingresar algo como nombre@email.com.</div>
-                    <div class="form-error" ng-message="email">This field is must be an email.</div>
-                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande el correo.</div>
-                </div>
-                <!--    <label class="item item-input item-floating-label" ng-class="{ 'has-error-lr' : registerForm.txtpassword.$invalid  && registerForm.$submitted}">
-                    <span class="input-label">Password</span>
-                    <input name="txtpassword" type="password" ng-model="user.password" placeholder="Password"
-                    ng-minlength="5"
-                    ng-maxlength="25"
-                    required>
-                  </label> -->
-                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                    <input name="txtPassword" type="password" ng-model="user.password" placeholder="Password"
-                           ng-minlength="6"
-                           ng-maxlength="30"
-                           required>
-                </div>
-                <div class="form-errors" ng-messages="registerForm.txtpassword.$error" ng-if="registerForm.$submitted">
-                    <div class="form-error" ng-message="required">Debes ingresar una Contraseña.</div>
-                    <div class="form-error" ng-message="minlength">Ops, parece ser muy corta las Contraseña.</div>
-                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande las Contraseña.</div>
-                    <div class="form-error" ng-message="pattern">Debe ingresar solo caracteres letras y numeros.</div>
-                </div>
-                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                    <input name="phone" type="tel" ng-model="user.mobile" placeholder="Mobile No."
-                           ng-minlength="9"
-                           ng-maxlength="14"
-                           required>
-                </div>
-                <div class="form-errors" ng-messages="registerForm.phone.$error" ng-if="registerForm.$submitted">
-                    <div class="form-error" ng-message="required">Debes ingresar una Contraseña.</div>
-                    <div class="form-error" ng-message="minlength">Ops, parece ser muy corta las Contraseña.</div>
-                    <div class="form-error" ng-message="maxlength">Ops, parece ser muy grande las Contraseña.</div>
-                    <div class="form-error" ng-message="pattern">Debe ingresar solo caracteres letras y numeros.</div>
+<ion-view view-title="Register" cache-view="false">
+    <ion-content>
+        <div class="content">
+            <div class="row" id="toplinks" style="top:15px; position:fixed;">
+                <span>
+                    <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+                </span>
+            </div>
+            <div class="wrapper">
+                <div class="container">
+                    <a class="main_logo" href="#">
+                        <span class="logo">
+                            <svg version="1.1" x="0px" y="0px"
+                                 width="181.131px" height="91.013px" viewBox="0 0 181.131 91.013" enable-background="new 0 0 181.131 91.013"
+                                 xml:space="preserve">
+<path fill="#876AAA" d="M14.481,25.041c-3.842,0-7.179,1.408-9.908,4.123c-2.831,2.816-4.247,6.135-4.247,9.855v24.036
+	c0,3.721,1.416,7.039,4.247,9.855c2.729,2.815,6.066,4.224,9.908,4.224h31.747c0.303,0,0.506-0.201,0.506-0.503V39.02
+	c0-3.721-1.416-7.04-4.146-9.855c-2.73-2.715-6.066-4.123-9.807-4.123H14.481z M27.928,72.609c-5.156,0-8.392-4.626-8.392-9.554
+	V39.02c0-4.827,3.438-9.453,8.392-9.453V72.609z M78.273,63.155c0,4.828-3.336,9.454-8.291,9.756V29.667
+	c4.954,0.402,8.291,4.727,8.291,9.855V63.155z M56.233,91.013c3.741,0,6.976-1.408,9.706-4.224c2.729-2.815,4.044-6.034,4.044-9.654
+	h13.245c3.842,0,7.179-1.408,10.009-4.124c2.73-2.715,4.146-5.933,4.146-9.855V39.12c0-3.721-1.416-7.04-4.247-9.855
+	c-2.831-2.816-6.167-4.224-9.908-4.224H51.683c-0.304,0-0.506,0.201-0.506,0.503v64.967c0,0.301,0.202,0.502,0.506,0.502H56.233z
+	 M128.821,63.155c0,4.828-3.337,9.454-8.29,9.756V29.667c4.953,0.402,8.29,4.727,8.29,9.855V63.155z M106.781,91.013
+	c3.74,0,6.976-1.408,9.705-4.224c2.73-2.815,4.045-6.034,4.045-9.654h13.244c3.842,0,7.179-1.408,10.01-4.124
+	c2.729-2.715,4.145-5.933,4.145-9.855V39.12c0-3.721-1.415-7.04-4.246-9.855c-2.83-2.816-6.167-4.224-9.908-4.224H102.23
+	c-0.303,0-0.505,0.201-0.505,0.503v64.967c0,0.301,0.202,0.502,0.505,0.502H106.781z M157.127,0c3.942,0,7.279,1.307,10.009,4.022
+	s4.146,6.135,4.146,10.057v48.977c0,4.826,3.64,9.554,8.392,9.554c0.304,0,0.404,0.101,0.404,0.401v3.722
+	c0,0.302-0.101,0.402-0.404,0.402h-13.346c-3.843,0-7.179-1.408-9.909-4.224c-2.83-2.715-4.246-6.034-4.246-9.855V0.502
+	c0-0.302,0.203-0.502,0.506-0.502H157.127z M2,16.077h177.125c1.104,0,2,0.896,2,2v1.594c0,1.104-0.896,2-2,2H2
+	c-1.104,0-2-0.896-2-2v-1.594C0,16.973,0.896,16.077,2,16.077z M153.049,31.44c0,0-2.14-9.453-11.235-11.176h11.235V31.44z
+	 M169.896,20.264h11.234c-9.095,1.724-11.234,11.176-11.234,11.176V20.264z" />
+</svg>
+                        </span><span class="dots">
+                            <svg version="1.1" x="0px" y="0px"
+                                 width="15.445px" height="47.486px" viewBox="0 0 15.445 47.486" enable-background="new 0 0 15.445 47.486" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#876AAA" d="M1.404,0h9.828c2.326,0,4.213,1.876,4.213,4.19v9.777l-1.404,1.396
+	H4.212C1.886,15.363,0,13.487,0,11.173V1.397L1.404,0z M1.404,32.123h9.828c2.326,0,4.213,1.877,4.213,4.19v9.776l-1.404,1.396
+	H4.212C1.886,47.486,0,45.611,0,43.296v-9.777L1.404,32.123z" />
+</svg>
+                        </span>
+                    </a>
+                    <form class="register_form" id="registerForm" name="registerForm" novalidate ng-submit="registerForm.$valid && register(user)">
+                        <ul class="form_list">
+                            <li>
+                                <div class="input_wrap">
+                                    <input class="inputbox" type="text" id="name" name="name" ng-model="user.name" 
+                                           ng-maxlength="30"
+                                           required>
+                                    <label for="name">First & Last Name</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input_wrap">
+                                    <input class="inputbox" type="text" id="handle" name="handle" ng-model="user.handle" 
+                                           ng-maxlength="30"
+                                           required>
+                                    <label for="handle">Handle</label>
+                                </div>
+                            </li>
+                            <li class="jus">
+                                <div class="input_wrap">
+                                    <input class="inputbox" type="text" id="corporate-id"  name="txtemail" ng-model="user.email" 
+                                           ng-minlength="5"
+                                           ng-maxlength="30"
+                                           required>
+                                    <label for="corporate-id">Corporate ID</label>
+                                </div>
+                                <div class="input_at">@</div>
+                                <div class="input_wrap select_wrap">
+                                    <select class="inputbox" id="company" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = 'none'">
+                                       <!-- <option value="none">Select</option> -->
+                                        <option ng-repeat="domain in domainList" value="{{domain}}">{{domain.domain}}</option>
+                                    </select>
+                                    <label for="company">Company</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input_wrap">
+                                    <input class="inputbox" type="password" id="pass" name="txtPassword" ng-model="user.password" 
+                                           ng-minlength="6"
+                                           ng-maxlength="30"
+                                           required>
+                                    <label for="pass">Password</label>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="input_wrap">
+                                    <input class="inputbox" type="tel" id="cell" name="phone" ng-model="user.mobile" 
+                                           ng-minlength="9"
+                                           ng-maxlength="14"
+                                           required>
+                                    <label for="cell">Mobile Number</label>
+                                </div>
+                            </li>
+                            <li class="buttons">
+                                <button class="button" type="submit">Register</button>
+                            </li>
+                        </ul>
+                    </form>
+                    <ul class="form_links">
+                        <li><a nav-direction="forward" ng-href="#/app/home">Cancel</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="padding-top">
-                <input type="submit" value="Register" class="login-button" />
-            </div>
-        </form>
+        </div>
     </ion-content>
 </ion-view>
