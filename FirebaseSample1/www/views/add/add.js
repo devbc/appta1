@@ -2,6 +2,16 @@
 angular.module('App').controller('addController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http,
     $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $ionicSlideBoxDelegate, $cordovaCamera, $cordovaGeolocation) {
    
+    jq('.photo_wrapper .photo_slide').css('display', 'block');
+   /* jq('.photo_wrapper').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        fade: true
+        //   asNavFor: '.photo_thumbs'
+    });*/
+
     $scope.item = {};
     $scope.imageArr = [];
     $scope.parseFile = null;
@@ -50,16 +60,7 @@ angular.module('App').controller('addController', function ($rootScope, $scope, 
                 saveToPhotoAlbum: false
             
             });
-      /*      $cordovaCamera.getPicture({
-                quality: 50,
-                sourceType: navigator.camera.PictureSourceType.CAMERA,
-                allowEdit: true,
-                destinationType: Camera.DestinationType.DATA_URL
-            }).then(onSuccess, function (err) {
-                // An error occured. Show a message to the user
-                alert("Error occurred:  " + JSON.stringify(err));
-            });
-        */
+      
         } else {
             alert("You have already added 4 images!");
         }
@@ -69,16 +70,11 @@ angular.module('App').controller('addController', function ($rootScope, $scope, 
 
     function onSuccess(imageData) {
        
-        //    alert("inside getimage 3" + $scope.imageArr.length);
-    /*    var imgObj = [];
-        imgObj.push("data:image/jpeg;base64," + imageData);
-        $scope.imageArr.splice(0, $scope.imageArr.length);
-        $scope.imageArr = $scope.imageArr.concat("data:image/jpeg;base64," + imageData);*/
-      //  var alphaNumeric = alpha.concat(numeric);
         $scope.imageArr.push("data:image/jpeg;base64," + imageData);
         $ionicSlideBoxDelegate.update();
         $ionicSlideBoxDelegate.$getByHandle('image-viewer').update();
-        alert("inside getimage 4>> " + $scope.imageArr.length);
+       alert("inside getimage 4>> " + $scope.imageArr.length);
+       
   
     } 
             
@@ -110,16 +106,7 @@ angular.module('App').controller('addController', function ($rootScope, $scope, 
                 }
             })
             // Get location (city name, state)
-        /*    locationService.getLocation(latlng).then(function (location) {
-                var itemLocation =
-                location.results[0].address_components[1].long_name + ', ' + location.results[0].address_components[2].long_name;
-                $scope.item.location = itemLocation;
-            //    $scope.item.coords = new Parse.GeoPoint({ latitude: position.coords.latitude, longitude: position.coords.longitude });
-                alert(" ... " + $scope.item.location);
-                alert(" ... " + $scope.item.coords);
-            }, function (error) {
-                //Something went wrong!
-            });*/
+       
         };
         // onError Callback receives a PositionError object
         //
@@ -175,48 +162,9 @@ angular.module('App').controller('addController', function ($rootScope, $scope, 
                 "updated_on": new Date().getTime(),
                 "sold":"N"
             }
-/*
-            var ItemCreate = Parse.Object.extend("Items");
-            var Item = new ItemCreate();
-            Item.set("itemName", $scope.item.itemName);
-            Item.set("approved", true);
-            Item.set("blocked", false);
-            Item.set("featured", false);
-            Item.set("itemDescription", $scope.item.itemDescription);
-            Item.set("itemPrice", $scope.item.itemPrice);
-            Item.set("reported", false);
-     //       Item.set("staffPicked", false);
-      //      Item.set("categorySelect", $scope.item.categorySelect);
-            Item.set("itemCoords", $rootScope.currentUser.get('coords'));
-            Item.set("itemLocation", $scope.item.get('location'));
-            Item.set("user", $rootScope.currentUser.get('email'));
-            Item.set("background", Math.floor((Math.random() * 6) + 1));
-            Item.set("itemPicture", $scope.parseFile);
-            Item.set("itemPicture2", $scope.parseFile2);
-            Item.set("itemPicture3", $scope.parseFile3);
-            Item.set("itemPicture4", $scope.parseFile4);
-         //   Item.set("used", $scope.item.used);
-         //   Item.set("purchaseYear", $scope.item.purchaseYear);
-        //    Item.set("reason", $scope.item.reason);
-                    
 
-            Item.save();*/
-            //   alert(JSON.stringify(itemJSON));
-        //    alert($firebaseArray);
-         //   alert(firebase);
             var messagesRef = $firebaseArray(firebase.database().ref().child("items"));
-          /*  var itemsRef = firebase.database().ref().child("items");
-            itemsRef.push(itemJSON);
-           
-            itemsRef.on('child_added', function (snapshot) {
-                var message = snapshot.val();
-                var id = snapshot.key();
-                 $ionicPopup.alert({
-                title: 'Congratulations!',
-                template: 'We will review your listing in a bit.'
-                 });
-                 $state.transitionTo("app.home");
-            });*/
+         
            
        //     messageListRef.push(itemJSON);
            // alert(messagesRef);
@@ -232,12 +180,11 @@ angular.module('App').controller('addController', function ($rootScope, $scope, 
                // alert(res);
             });
            
-          /*  $ionicPopup.alert({
-                title: 'Congratulations!',
-                template: 'We will review your listing in a bit.'
-            });
-            $state.transitionTo("app.home");*/
         } 
+    }
+
+    $scope.closeAddNew = function () {
+        $state.transitionTo("app.home");
     }
 
 });

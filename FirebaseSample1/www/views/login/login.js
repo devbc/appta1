@@ -1,7 +1,7 @@
 'Use Strict';
 angular.module('App').controller('loginController', function ($rootScope, $scope, $state,$cordovaOauth, $localStorage, $location,$http,$ionicPopup,$firebaseAuth , $firebaseObject,$log, Auth, FURL, Utils) {
     //var ref = new Firebase(FURL);
-  jq('.wrapper').css('min-height', window.innerHeight);
+ // jq('.wrapper').css('min-height', window.innerHeight);
 
     //inputbox not_empty
   jq('.inputbox').each(function () {
@@ -24,7 +24,7 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
   var ref = firebase.database().ref();
   var userkey = "";
   $scope.signIn = function (user) {
-   /*   alert("asas");
+      alert("asas");
       if (jq("#email").val() == "" || jq("#email").val() == undefined) {
           jq("#email").parent().addClass('error');
           jq("#email").parent().removeClass('success');
@@ -35,7 +35,7 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
           jq("#pass").parent().removeClass('success');
           return false;
       }
-      */
+      
     $log.log("Enviado");
     if(angular.isDefined(user)){
     Utils.show();

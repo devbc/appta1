@@ -1,35 +1,88 @@
 <ion-view view-title="Forgot Password" hide-back-button="true" class="login-bg" cache-view="false">
   <ion-content class="padding-top">
+      <div class="content">
+          <div class="row" style="top:15px; position:fixed;">
+              <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+          </div>
+          <div class="wrapper">
+              <div class="container">
+                  <a class="main_logo" href="javascript:void(0)">
+                      <span class="logo">
+                          <svg version="1.1" x="0px" y="0px"
+                               width="181.131px" height="91.013px" viewBox="0 0 181.131 91.013" enable-background="new 0 0 181.131 91.013"
+                               xml:space="preserve">
+<path fill="#876AAA" d="M14.481,25.041c-3.842,0-7.179,1.408-9.908,4.123c-2.831,2.816-4.247,6.135-4.247,9.855v24.036
+	c0,3.721,1.416,7.039,4.247,9.855c2.729,2.815,6.066,4.224,9.908,4.224h31.747c0.303,0,0.506-0.201,0.506-0.503V39.02
+	c0-3.721-1.416-7.04-4.146-9.855c-2.73-2.715-6.066-4.123-9.807-4.123H14.481z M27.928,72.609c-5.156,0-8.392-4.626-8.392-9.554
+	V39.02c0-4.827,3.438-9.453,8.392-9.453V72.609z M78.273,63.155c0,4.828-3.336,9.454-8.291,9.756V29.667
+	c4.954,0.402,8.291,4.727,8.291,9.855V63.155z M56.233,91.013c3.741,0,6.976-1.408,9.706-4.224c2.729-2.815,4.044-6.034,4.044-9.654
+	h13.245c3.842,0,7.179-1.408,10.009-4.124c2.73-2.715,4.146-5.933,4.146-9.855V39.12c0-3.721-1.416-7.04-4.247-9.855
+	c-2.831-2.816-6.167-4.224-9.908-4.224H51.683c-0.304,0-0.506,0.201-0.506,0.503v64.967c0,0.301,0.202,0.502,0.506,0.502H56.233z
+	 M128.821,63.155c0,4.828-3.337,9.454-8.29,9.756V29.667c4.953,0.402,8.29,4.727,8.29,9.855V63.155z M106.781,91.013
+	c3.74,0,6.976-1.408,9.705-4.224c2.73-2.815,4.045-6.034,4.045-9.654h13.244c3.842,0,7.179-1.408,10.01-4.124
+	c2.729-2.715,4.145-5.933,4.145-9.855V39.12c0-3.721-1.415-7.04-4.246-9.855c-2.83-2.816-6.167-4.224-9.908-4.224H102.23
+	c-0.303,0-0.505,0.201-0.505,0.503v64.967c0,0.301,0.202,0.502,0.505,0.502H106.781z M157.127,0c3.942,0,7.279,1.307,10.009,4.022
+	s4.146,6.135,4.146,10.057v48.977c0,4.826,3.64,9.554,8.392,9.554c0.304,0,0.404,0.101,0.404,0.401v3.722
+	c0,0.302-0.101,0.402-0.404,0.402h-13.346c-3.843,0-7.179-1.408-9.909-4.224c-2.83-2.715-4.246-6.034-4.246-9.855V0.502
+	c0-0.302,0.203-0.502,0.506-0.502H157.127z M2,16.077h177.125c1.104,0,2,0.896,2,2v1.594c0,1.104-0.896,2-2,2H2
+	c-1.104,0-2-0.896-2-2v-1.594C0,16.973,0.896,16.077,2,16.077z M153.049,31.44c0,0-2.14-9.453-11.235-11.176h11.235V31.44z
+	 M169.896,20.264h11.234c-9.095,1.724-11.234,11.176-11.234,11.176V20.264z" />
+</svg>
+                      </span><span class="dots">
+                          <svg version="1.1" x="0px" y="0px"
+                               width="15.445px" height="47.486px" viewBox="0 0 15.445 47.486" enable-background="new 0 0 15.445 47.486" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#876AAA" d="M1.404,0h9.828c2.326,0,4.213,1.876,4.213,4.19v9.777l-1.404,1.396
+	H4.212C1.886,15.363,0,13.487,0,11.173V1.397L1.404,0z M1.404,32.123h9.828c2.326,0,4.213,1.877,4.213,4.19v9.776l-1.404,1.396
+	H4.212C1.886,47.486,0,45.611,0,43.296v-9.777L1.404,32.123z" />
+</svg>
+                      </span>
+                  </a>
+                  <form class="login_form" novalidate id="forgotForm" name="forgotForm" ng-submit="resetpassword(user)" style="border-bottom: none !important;">
+                      <ul class="form_list">
+                          <li>
+                              <div class="input_wrap input_user">
+                                  <input class="inputbox" id="email" name="txtemail" type="email" ng-model="user.email"
+                                         ng-minlength="5"
+                                         ng-maxlength="30"
+                                         required>
+                                  <label for="email">Username</label>
+                              </div>
+                          </li>
+                          <li class="buttons">
+                              <button class="button" type="submit">
+                                  Reset Password<i class="arr">
+                                      <svg version="1.1" x="0px" y="0px"
+                                           width="11.576px" height="23.455px" viewBox="0 0 11.576 23.455" enable-background="new 0 0 11.576 23.455" xml:space="preserve">
+<path fill="#0D0E0F" d="M0.5,23.455c-0.125,0-0.251-0.047-0.349-0.142c-0.198-0.192-0.203-0.509-0.01-0.707l10.248-10.549
+	L0.131,0.837c-0.186-0.204-0.172-0.52,0.032-0.707c0.203-0.186,0.52-0.172,0.707,0.032L11.445,11.73
+	c0.178,0.195,0.174,0.496-0.01,0.686L0.858,23.303C0.761,23.404,0.63,23.455,0.5,23.455z" />
+</svg>
+                                  </i>
+                              </button>
+                          </li>
+                      </ul>
+                  </form>
+              </div>
+          </div>
+      </div> 
       <div class="row">
           <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
       </div>
    
-    <form name="forgotForm" novalidate ng-submit="forgotForm.$valid && resetpassword(user)">
+  <!--  <form name="forgotForm" novalidate ng-submit="resetpassword(user)">
    <div class="list">
-    <!--  <label class="item item-input item-floating-label" ng-class="{ 'has-error' : forgotForm.txtemail.$invalid && forgotForm.$submitted }">
-        <span class="input-label">Email</span>
-        <input name="txtemail" ng-model="user.email" placeholder="Email" type="email"
-        ng-minlength="5"
-        ng-maxlength="30"
-        required>
-      </label>-->
+    
        <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-           <!--  <span class="input-label">Email</span> -->
            <input name="txtemail" type="email" ng-model="user.email" placeholder="Email"
                   ng-minlength="5"
                   ng-maxlength="30"
                   required>
        </div>
-      <div class="form-errors" ng-messages="forgotForm.txtemail.$error" ng-if="forgotForm.$submitted">
-        <div class="form-error" ng-message="required">This field is required</div>
-        <div class="form-error" ng-message="email">This field is must be an email.</div>
-        <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
-        <div class="form-error" ng-message="maxlength">This field is must be less than 30 characters.</div>
-      </div>
+    
        <div class="padding-top">
            <input type="submit" value="Reset Password" class="login-button" />
        </div>
     </div>
-  </form>
+  </form>-->
   </ion-content>
 </ion-view>

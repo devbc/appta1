@@ -3,7 +3,45 @@
         <form name="myForm" novalidate>
             <wizard on-finish="finishedWizard()">
                 <wz-step wz-title="Photos" canexit="exitValidation">
-                    <div class="pageOne">
+                    <div class="content bg2">
+                        <div class="wrapper">
+                            
+                                <ion-slide-box id="img-slider" delegate-handle="image-viewer"  on-slide-changed="slideHasChanged()" show-pager="true">
+                                    <ion-slide  ng-repeat="img in imageArr">
+                                        <img ng-src="{{img}}" />
+                                    </ion-slide>
+                                </ion-slide-box> 
+                             <!--   <div class="photo_wrapper">
+                             <div class="photo_slide" ng-repeat="img in imageArr"><img ng-src="{{img}}"></div>
+                                <div class="photo_slide"><img src="img/photo1.jpg"></div>
+                                <div class="photo_slide"><img src="img/photo1.jpg"></div>
+                                <div class="photo_slide"><img src="img/photo1.jpg"></div>
+                                <div class="photo_slide"><img src="img/photo1.jpg"></div>
+                                <div class="photo_slide"><img src="img/photo1.jpg"></div> 
+                            </div> -->
+                            <div class="photo_header">
+                          <!--      <button class="camera_switch"></button>
+                                <button class="camera_flash"></button>-->
+                                <button class="camera_close" ng-click="closeAddNew()"></button>
+                            </div>
+                            <div class="photo_footer">
+                             <!--   <div class="photo_thumbs">
+                                    <div class="photo_thumb"><img src="img/thumb1.jpg"></div>
+                                    <div class="photo_thumb"><img src="img/thumb2.jpg"></div>
+                                    <div class="photo_thumb"><img src="img/thumb3.jpg"></div>
+                                    <div class="photo_thumb"><img src="img/thumb1.jpg"></div>
+                                    <div class="photo_thumb"><img src="img/thumb2.jpg"></div>
+                                    <div class="photo_thumb"><img src="img/thumb3.jpg"></div>
+                                </div>-->
+                                <div class="camera_tools">
+                                    <button class="camera_photos" ng-click="getImage()"></button>
+                                    <button class="camera_next" wz-next></button>
+                                    <button class="camera_shot" ng-click="getCamera()"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                  <!--  <div class="pageOne">
                            <ion-slide-box id="img-slider" delegate-handle="image-viewer" class="photoSlider" on-slide-changed="slideHasChanged()" show-pager="true">
                                <ion-slide ng-repeat="img in imageArr">
                                    <img ng-src="{{img}}" />
@@ -26,7 +64,7 @@
                                 <a ng-click="getCamera()"><i class="icon ion-android-camera" ng-style="color: white; font-size:20px;"></i></a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                 </wz-step>
                 <wz-step wz-title="Location" canenter="enterValidation">
                     <div class="pageOne" >
