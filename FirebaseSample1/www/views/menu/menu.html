@@ -12,7 +12,7 @@
                 </a>
             </div>
         </div>
-        <ion-content class="menuContent"  cache-view="false">
+        <ion-content class="menuContent" cache-view="false">
             <div ng-show="currentUser" class="text-center pt30">
 
                 <img ng-hide="currentUser.profilePic" ng-src="img/user.png" style="border-radius: 50%; float: left; margin-left: 20px; width:48px; height: 48px;">
@@ -22,59 +22,59 @@
 
             <div class="p15">
                 <div class="menuDiv p5" ng-hide="currentUser">
-                    <a href="#/login" >
+                    <a nav-direction="forward" href="#/login">
                         Sign In
-                    </a>  
+                    </a>
                 </div>
-                
+
                 <div class="menuDiv p5" ng-show="currentUser">
                     <a href="#/app/nearme" nav-clear menu-close ng-click="showRightMenu()">
                         Notifications
                     </a>
-                </div>    
+                </div>
 
                 <div ng-show="currentUser" class="menuDiv p5">
-                    <a href="#/myPosts" nav-clear menu-close>
+                    <a href="#/myPosts" av-direction="forward" nav-clear menu-close>
                         My Posts
                     </a>
                 </div>
-               
+
                 <div ng-show="currentUser" class="menuDiv p5">
-                    <a href="#/myQuotes" nav-clear menu-close>
+                    <a href="#/myQuotes" av-direction="forward" nav-clear menu-close>
                         My Quotes
                     </a>
                 </div>
-               
+
                 <div class="menuDiv p5">
                     <a href="javascript:void(0);" nav-clear menu-close ng-click="sendSms()">
                         Invite co-workers
                     </a>
                 </div>
 
-                <div class="menuDiv p5" ng-show="currentUser" >
-                    <a href="#/editProfile" nav-clear menu-close>
+                <div class="menuDiv p5" ng-show="currentUser">
+                    <a href="#/editProfile" av-direction="forward" nav-clear menu-close>
                         Edit Profile
                     </a>
                 </div>
 
                 <div class="menuDiv p5" ng-show="currentUser">
-                    <a  nav-clear menu-close ng-click="showRightMenu()">
+                    <a nav-clear menu-close ng-click="showRightMenu()">
                         My Connections
                     </a>
                 </div>
-                
+
                 <div class="menuDiv p5">
-                    <a href="javascript:void(0);" nav-clear menu-close ng-click="openLegalPrivacyPage()">
+                    <a href="javascript:void(0);" av-direction="enter" nav-clear menu-close ng-click="openLegalPrivacyPage()">
                         Legal & Privacy Policy
                     </a>
                 </div>
-               
+
                 <div class="menuDiv p5" ng-show="currentUser">
-                    <a href="javascript:void(0);" ng-click="signOut()"  nav-clear menu-close>
+                    <a href="javascript:void(0);" ng-click="signOut()" nav-clear menu-close>
                         Sign out
                     </a>
                 </div>
-                
+
 
             </div>
         </ion-content>

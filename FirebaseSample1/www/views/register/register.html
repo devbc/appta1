@@ -3,7 +3,7 @@
         <div class="content">
             <div class="row" id="toplinks" style="top:15px; position:fixed;">
                 <span>
-                    <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+                    <a nav-direction="back" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
                 </span>
             </div>
             <div class="wrapper">
@@ -39,35 +39,28 @@
 </svg>
                         </span>
                     </a>
-                    <form class="register_form" id="registerForm" name="registerForm" novalidate ng-submit="registerForm.$valid && register(user)">
+                    <form class="register_form" id="registerForm" name="registerForm" novalidate ng-submit="register(user)">
                         <ul class="form_list">
                             <li>
                                 <div class="input_wrap">
-                                    <input class="inputbox" type="text" id="name" name="name" ng-model="user.name" 
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" type="text" id="name" name="name" ng-blur="onchangeName()" ng-model="user.name" ng-maxlength="30" required>
                                     <label for="name">First & Last Name</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="input_wrap">
-                                    <input class="inputbox" type="text" id="handle" name="handle" ng-model="user.handle" 
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" type="text" id="handle" name="handle" ng-blur="onchangeHandle()" ng-model="user.handle" ng-maxlength="30" required>
                                     <label for="handle">Handle</label>
                                 </div>
                             </li>
                             <li class="jus">
                                 <div class="input_wrap">
-                                    <input class="inputbox" type="text" id="corporate-id"  name="txtemail" ng-model="user.email" 
-                                           ng-minlength="5"
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" type="text" id="corporate-id" name="txtemail" ng-model="user.email" ng-blur="onchangeEmail()" ng-minlength="5" ng-maxlength="30" required>
                                     <label for="corporate-id">Corporate ID</label>
                                 </div>
                                 <div class="input_at">@</div>
                                 <div class="input_wrap select_wrap">
-                                    <select class="inputbox" id="company" name="emailDomain" ng-model="user.emailDomain" ng-init="user.emailDomain = 'none'">
+                                    <select class="inputbox" id="company" name="emailDomain" ng-model="user.emailDomain" ng-blur="onchangeCompany()" ng-init="user.emailDomain = 'none'">
                                        <!-- <option value="none">Select</option> -->
                                         <option ng-repeat="domain in domainList" value="{{domain}}">{{domain.domain}}</option>
                                     </select>
@@ -76,19 +69,13 @@
                             </li>
                             <li>
                                 <div class="input_wrap">
-                                    <input class="inputbox" type="password" id="pass" name="txtPassword" ng-model="user.password" 
-                                           ng-minlength="6"
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" type="password" id="pass" name="txtPassword" ng-model="user.password" ng-blur="onchangePassword()" ng-minlength="6" ng-maxlength="30" required>
                                     <label for="pass">Password</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="input_wrap">
-                                    <input class="inputbox" type="tel" id="cell" name="phone" ng-model="user.mobile" 
-                                           ng-minlength="9"
-                                           ng-maxlength="14"
-                                           required>
+                                    <input class="inputbox" type="tel" id="phone" name="phone" ng-model="user.mobile" ng-blur="onchangePhone()" ng-minlength="9" ng-maxlength="14" required>
                                     <label for="cell">Mobile Number</label>
                                 </div>
                             </li>
@@ -98,7 +85,7 @@
                         </ul>
                     </form>
                     <ul class="form_links">
-                        <li><a nav-direction="forward" ng-href="#/app/home">Cancel</a></li>
+                        <li><a nav-direction="back" ng-href="#/app/home">Cancel</a></li>
                     </ul>
                 </div>
             </div>

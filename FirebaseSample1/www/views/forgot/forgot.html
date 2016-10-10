@@ -1,13 +1,13 @@
 <ion-view view-title="Forgot Password" hide-back-button="true" class="login-bg" cache-view="false">
-  <ion-content class="padding-top">
-      <div class="content">
-          <div class="row" style="top:15px; position:fixed;">
-              <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
-          </div>
-          <div class="wrapper">
-              <div class="container">
-                  <a class="main_logo" href="javascript:void(0)">
-                      <span class="logo">
+    <ion-content>
+        <div class="content">
+            <div class="row" style="top:15px; position:fixed;">
+                <a nav-direction="back" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
+            </div>
+            <div class="wrapper">
+                <div class="container">
+                    <a class="main_logo" href="javascript:void(0)">
+                        <span class="logo">
                           <svg version="1.1" x="0px" y="0px"
                                width="181.131px" height="91.013px" viewBox="0 0 181.131 91.013" enable-background="new 0 0 181.131 91.013"
                                xml:space="preserve">
@@ -36,20 +36,17 @@
 	H4.212C1.886,47.486,0,45.611,0,43.296v-9.777L1.404,32.123z" />
 </svg>
                       </span>
-                  </a>
-                  <form class="login_form" novalidate id="forgotForm" name="forgotForm" ng-submit="resetpassword(user)" style="border-bottom: none !important;">
-                      <ul class="form_list">
-                          <li>
-                              <div class="input_wrap input_user">
-                                  <input class="inputbox" id="email" name="txtemail" type="email" ng-model="user.email"
-                                         ng-minlength="5"
-                                         ng-maxlength="30"
-                                         required>
-                                  <label for="email">Username</label>
-                              </div>
-                          </li>
-                          <li class="buttons">
-                              <button class="button" type="submit">
+                    </a>
+                    <form class="login_form" novalidate id="forgotForm" name="forgotForm" ng-submit="resetpassword(user)" style="border-bottom: none !important;">
+                        <ul class="form_list">
+                            <li>
+                                <div class="input_wrap input_user">
+                                    <input class="inputbox" id="email" name="txtemail" type="email" ng-model="user.email" ng-blur="onchangeEmail()" ng-minlength="5" ng-maxlength="30" required />
+                                    <label for="email">Username</label>
+                                </div>
+                            </li>
+                            <li class="buttons">
+                                <button class="button" type="submit">
                                   Reset Password<i class="arr">
                                       <svg version="1.1" x="0px" y="0px"
                                            width="11.576px" height="23.455px" viewBox="0 0 11.576 23.455" enable-background="new 0 0 11.576 23.455" xml:space="preserve">
@@ -59,17 +56,17 @@
 </svg>
                                   </i>
                               </button>
-                          </li>
-                      </ul>
-                  </form>
-              </div>
-          </div>
-      </div> 
-      <div class="row">
-          <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login"></a>
-      </div>
-   
-  <!--  <form name="forgotForm" novalidate ng-submit="resetpassword(user)">
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!--    <div class="row">
+            <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/login">nmnmn</a>
+        </div>
+
+        <form name="forgotForm" novalidate ng-submit="resetpassword(user)">
    <div class="list">
     
        <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
@@ -84,5 +81,5 @@
        </div>
     </div>
   </form>-->
-  </ion-content>
+    </ion-content>
 </ion-view>

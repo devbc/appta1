@@ -3,10 +3,10 @@
 
         <div class="content">
             <div class="row" style="top:15px; position:fixed;">
-                <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
+                <a nav-direction="back" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
             </div>
             <div class="wrapper">
-               
+
                 <div class="container">
                     <a class="main_logo" href="javascript:void(0)">
                         <span class="logo">
@@ -43,19 +43,13 @@
                         <ul class="form_list">
                             <li>
                                 <div class="input_wrap input_user">
-                                    <input class="inputbox" id="email" name="txtemail" type="email" ng-model="user.email" 
-                                           ng-minlength="5"
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" id="email" name="txtemail" type="email" ng-model="user.email" ng-blur="onchangeEmail()" ng-minlength="5" ng-maxlength="30" required>
                                     <label for="email">Username</label>
                                 </div>
                             </li>
                             <li>
                                 <div class="input_wrap input_pass">
-                                    <input class="inputbox" type="password" id="pass" name="txtPassword" ng-model="user.password" 
-                                           ng-minlength="5"
-                                           ng-maxlength="30"
-                                           required>
+                                    <input class="inputbox" type="password" id="pass" name="txtPassword" ng-model="user.password" ng-blur="onchangePassword()" ng-minlength="5" ng-maxlength="30" required>
                                     <label for="pass">Password</label>
                                 </div>
                             </li>
@@ -79,6 +73,6 @@
                     </ul>
                 </div>
             </div>
-        </div> 
+        </div>
     </ion-content>
 </ion-view>
