@@ -1,10 +1,12 @@
 ﻿<ion-view view-title="add" hide-back-button="true" cache-view="false" ng-init="getCamera()">
+    <!-- <ion-view view-title="add" hide-back-button="true" cache-view="false" ng-init=""> -->
+
     <ion-content class="">
-        <form name="myForm" novalidate>
-            <wizard on-finish="finishedWizard()">
-                <wz-step wz-title="Photos" canexit="exitValidation">
-                    <!--       <div class="content bg2">
-                        <div class="wrapper">
+        <div class="content bg2">
+            <div class="wrapper">
+                <form name="myForm" novalidate>
+                    <wizard on-finish="finishedWizard()">
+                        <wz-step wz-title="Photos" canexit="exitValidation">
                             <ion-slide-box id="img-slider" delegate-handle="image-viewer" on-slide-changed="slideHasChanged()" show-pager="true">
                                 <ion-slide ng-repeat="img in imageArr">
                                     <img ng-src="{{img}}" />
@@ -13,112 +15,157 @@
                             <div class="photo_header">
                                 <button class="camera_close" ng-click="closeAddNew()"></button>
                             </div>
-                            <div class="photo_footer">
+                            <div class="photo_footer" style="position:fixed !important; bottom:0 !importtant;">
                                 <div class="camera_tools">
                                     <button class="camera_photos" ng-click="getImage()"></button>
                                     <button class="camera_next" wz-next></button>
                                     <button class="camera_shot" ng-click="getCamera()"></button>
                                 </div>
                             </div>
-                        </div>
-                    </div> -->
-                    < <div class="pageOne">
-                        <ion-slide-box id="img-slider" delegate-handle="image-viewer" class="photoSlider" on-slide-changed="slideHasChanged()" show-pager="true">
-                            <ion-slide ng-repeat="img in imageArr">
-                                <img ng-src="{{img}}" />
-                            </ion-slide>
-                        </ion-slide-box>
-                        <div class="row modal-bg add-nav" id="toplinks">
-                            <span>
+
+                            <!--  <div class="pageOne">
+                                <ion-slide-box id="img-slider" delegate-handle="image-viewer" class="photoSlider" on-slide-changed="slideHasChanged()" show-pager="true">
+                                    <ion-slide ng-repeat="img in imageArr">
+                                        <img ng-src="{{img}}" />
+                                    </ion-slide>
+                                </ion-slide-box>
+                                <div class="row modal-bg add-nav" id="toplinks">
+                                    <span>
                                 <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" ng-href="#/app/home"></a>
                             </span>
-                            <span class="align-right">
+                                    <span class="align-right">
                                 <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
                             </span>
-                        </div>
-                        <div class="row modal-bg add-bottom">
-                            <img ng-click="getImage()" class="uploadPic" />
-                            <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
-                        </div>
-                        <ul id="takePicture">
-                            <li>
-                                <a ng-click="getCamera()"><i class="icon ion-android-camera" ng-style="color: white; font-size:20px;"></i></a>
-                            </li>
-                        </ul>
-                        </div>
-                </wz-step>
-                <wz-step wz-title="Location" canenter="enterValidation">
-
-                    <div class="pageOne">
-                        <div class="row" id="toplinks" style="z-index:99;">
-                            <span>
+                                </div> -->
+                            <!--    <div class="row modal-bg add-bottom">
+                                <img ng-click="getImage()" class="uploadPic" />
+                                <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
+                            </div>
+                            <ul id="takePicture">
+                                <li>
+                                    <a ng-click="getCamera()"><i class="icon ion-android-camera" ng-style="color: white; font-size:20px;"></i></a>
+                                </li>
+                            </ul> 
+            </div>-->
+                        </wz-step>
+                        <wz-step wz-title="Location" canenter="enterValidation">
+                            <div class="checkout_form_header">
+                                <div class="container">
+                                    <button class="back" wz-previous></button>
+                                    <button class="close" ng-click="closeAddNew()"></button>
+                                </div>
+                            </div>
+                            <div class="" style="margin-top:25% !important;">
+                                <form class="checkout_form">
+                                    <div class="checkout_form_ico ico1"></div>
+                                    <div class="checkout_form_title">To be picked up at</div>
+                                    <ul class="form_list">
+                                        <li>
+                                            <input class="inputbox" type="text" id="userLoc" ng-model="item.location" ng-autocomplete="locResult" details="locDetails" options="locOptions" required />
+                                        </li>
+                                        <li class="buttons">
+                                            <button class="button" type="submit" wz-next>>Next</button>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                            <!--       <div class="pageOne">
+                                <div class="row" id="toplinks" style="z-index:99;">
+                                    <span>
                                 <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" wz-previous></a>
                             </span>
-                            <span class="align-right">
+                                    <span class="align-right">
                                 <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
                             </span>
-                        </div>
-                        <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                            <input type="text" id="userLoc" ng-model="item.location" ng-autocomplete="locResult" details="locDetails" options="locOptions" required />
-                        </div>
+                                </div>
+                                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                                    <input type="text" id="userLoc" ng-model="item.location" ng-autocomplete="locResult" details="locDetails" options="locOptions" required />
+                                </div>
 
-                        <div class="row modal-bg add-bottom">
-                            <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
-                        </div>
-                    </div>
-                </wz-step>
-                <wz-step wz-title="Price">
+                                <div class="row modal-bg add-bottom">
+                                    <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
+                                </div>
+                            </div> -->
+                        </wz-step>
+                        <wz-step wz-title="Price">
+                            <div class="checkout_form_header">
+                                <button class="back" wz-previous></button>
+                                <button class="close" ng-click="closeAddNew()"></button>
+                            </div>
+                            <form class="checkout_form">
+                                <div class="checkout_form_ico ico2"></div>
+                                <div class="checkout_form_title">Offering for</div>
+                                <ul class="form_list">
+                                    <li>
+                                        <div class="input_wrap price">
+                                            <input class="inputbox" type="number" id="price" ng-model="item.itemPrice" placeholder="Price (USD)" required />
+                                        </div>
+                                    </li>
+                                    <li class="buttons">
+                                        <button class="button" type="submit" wz-next>Next</button>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!--  <div class="pageOne">
 
-                    <div class="pageOne">
-
-                        <div class="row" id="toplinks" style="z-index:99;">
-                            <span>
+                                <div class="row" id="toplinks" style="z-index:99;">
+                                    <span>
                                     <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" wz-previous></a>
                                 </span>
-                            <span class="align-right">
+                                    <span class="align-right">
                                     <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
                                 </span>
-                        </div>
-                        <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                            <input type="number" id="price" ng-model="item.itemPrice" placeholder="Price (USD)" required />
-                        </div>
+                                </div>
+                                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                                    <input type="number" id="price" ng-model="item.itemPrice" placeholder="Price (USD)" required />
+                                </div>
 
-                        <div class="row modal-bg add-bottom">
-                            <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
-                        </div>
-                    </div>
-                    <!--    <div class="row">
-                                <input class="productTitle" type="tel" placeholder="Price (USD)" ng-model="item.itemPrice" name="price" required>
+                                <div class="row modal-bg add-bottom">
+                                    <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
+                                </div>
                             </div>
-                            <div class="row">
-                                <input class="productTitle" maxlength="4" type="number" placeholder="Year of Purchase" ng-model="item.purchaseYear" name="purchaseYear" required>
+                         
+                            -->
+                        </wz-step>
+                        <wz-step wz-title="Title">
+                            <div class="checkout_form_header">
+                                <button class="back" wz-previous></button>
+                                <button class="close" ng-click="closeAddNew()"></button>
                             </div>
-                            <div class="row">
-                                <button class="next-button" wz-next value="Finish now" type="submit" ng-click="send()">Publish</button>
-                            </div>-->
-
-                </wz-step>
-                <wz-step wz-title="Title">
-                    <div class="pageOne">
-                        <div class="row" id="toplinks" style="z-index:99;">
-                            <span>
+                            <form class="checkout_form">
+                                <div class="checkout_form_ico ico3"></div>
+                                <div class="checkout_form_title">What would you call it?</div>
+                                <ul class="form_list">
+                                    <li>
+                                        <input class="inputbox" type="text" id="title" ng-model="item.itemName" placeholder="Title" required />
+                                    </li>
+                                    <li class="buttons">
+                                        <button class="button done" type="submit">Done</button>
+                                    </li>
+                                </ul>
+                            </form>
+                            <!--   <div class="pageOne">
+                                <div class="row" id="toplinks" style="z-index:99;">
+                                    <span>
                                     <a nav-direction="forward" class="button icon-left ion-chevron-left button-clear button-light" wz-previous></a>
                                 </span>
-                            <span class="align-right">
+                                    <span class="align-right">
                                     <a nav-direction="forward" class="button icon-right ion-android-close button-clear button-light" ng-href="#/app/home"></a>
                                 </span>
-                        </div>
-                        <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
-                            <input type="text" id="title" ng-model="item.itemName" placeholder="Title" required />
-                        </div>
+                                </div>
+                                <div class="row inner-addon left-addon usernameLbl item item-input item-floating-label" ng-class="{ 'has-error' : loginForm.txtemail.$invalid && loginForm.$submitted }">
+                                    <input type="text" id="title" ng-model="item.itemName" placeholder="Title" required />
+                                </div>
 
-                        <div class="row modal-bg add-bottom">
-                            <button type="submit" class="next-button" wz-next value="Finish now" ng-click="send()">Publish</button>
-                        </div>
-                    </div>
+                                <div class="row modal-bg add-bottom">
+                                    <button type="submit" class="next-button" wz-next value="Finish now" ng-click="send()">Publish</button>
+                                </div>
+                            </div> -->
 
-                </wz-step>
-            </wizard>
-        </form>
+                        </wz-step>
+                    </wizard>
+                </form>
+            </div>
+        </div>
     </ion-content>
 </ion-view>
