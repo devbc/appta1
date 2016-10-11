@@ -4,6 +4,9 @@ angular.module('App').controller('offerListController', function ($rootScope, $s
     console.log("INSIDE OFFERLIST")
     console.log($stateParams);
     $scope.itemId = $stateParams.itemId;
+
+    $rootScope.currentState = "/offers/"+$scope.itemId;
+
     $scope.displayFirst = true;
     $scope.replyDiv = false;
     $scope.item = {};

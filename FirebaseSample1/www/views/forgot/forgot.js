@@ -1,7 +1,8 @@
 'Use Strict';
-angular.module('App').controller('forgotController', function($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils) {
+angular.module('App').controller('forgotController', function ($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $rootScope) {
 
     $scope.user = {};
+    $rootScope.currentState = "forgot";
 
     jq('.inputbox').each(function() {
         if (this.value) {

@@ -2,6 +2,7 @@
 angular.module('App').controller('itemController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $cordovaCamera, $stateParams) {
     console.log($stateParams);
     $scope.itemId = $stateParams.item;
+    $rootScope.currentState = "/item/" + $scope.itemId;
     $scope.displayFirst = true;
     $scope.showQuestionText = false;
     $scope.item = {};

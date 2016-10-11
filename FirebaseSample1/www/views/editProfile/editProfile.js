@@ -1,6 +1,6 @@
 ﻿'Use Strict';
 angular.module('App').controller('editProfileController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray,  $cordovaCamera) {
-
+    $rootScope.currentState = "editProfile";
     if (!$rootScope.currentUser) {
         $state.go('app.home');
     }

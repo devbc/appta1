@@ -1,7 +1,7 @@
 ﻿'Use Strict';
 angular.module('App').controller('myPostsController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http,
     $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $ionicSlideBoxDelegate, $cordovaCamera, $cordovaGeolocation) {
-   
+    $rootScope.currentState = "myPosts";
     $scope.itemHeight = 150;
     $scope.myItems = [];
     $scope.items = [];

@@ -1,5 +1,5 @@
 'Use Strict';
-angular.module('App').controller('registerController', function($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray) {
+angular.module('App').controller('registerController', function ($scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $rootScope) {
     //  alert(JSON.stringify(FURL));
     $scope.user = {};
     // firebase.initializeApp(FURL);
@@ -10,7 +10,7 @@ angular.module('App').controller('registerController', function($scope, $state, 
             jq(this).removeClass('not_empty');
         }
     });
-
+    $rootScope.currentState = "register";
     $scope.onchangeName = function() {
         if (jq("#name").val()) {
             jq("#name").addClass('not_empty');

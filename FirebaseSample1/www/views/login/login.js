@@ -1,7 +1,16 @@
 'Use Strict';
-angular.module('App').controller('loginController', function($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseAuth, $firebaseObject, $log, Auth, FURL, Utils) {
+
+angular.module('App').controller('loginController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseAuth, $firebaseObject, $log, Auth, FURL, Utils, $stateParams) {
     //var ref = new Firebase(FURL);
     // jq('.wrapper').css('min-height', window.innerHeight);
+   
+    $scope.transition = ""
+    if ($rootScope.currentState == null) {
+        $scope.transition = "app.home";
+    } else {
+        $scope.transition = $rootScope.currentState;
+    }
+    $rootScope.currentState = "login";
     $scope.user = {};
     //inputbox not_empty
     jq('.inputbox').each(function() {
@@ -83,17 +92,19 @@ angular.module('App').controller('loginController', function($rootScope, $scope,
                                 }
                             }
                             $rootScope.currentUser = usr;
-                            /*   FCMPlugin.getToken(
+                               FCMPlugin.getToken(
                                   function (token) {
-                                      alert(token);
+                                      alert(token + " ... " + $rootScope.currentUserKey);
                                       var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
                                       obj.$loaded().then(function (data) {
 
-                                          obj.uToken = toek;
+                                          obj.uToken = token;
                                           obj.$save().then(function (ref) {
                                               //     console.log(ref);
                                               alert("Token Updated Successfully.");
-                                              $state.go('app.home');
+                                              //   $state.go('app.home');
+                                              $state.go($scope.transition);
+                                              
                                           }, function (error) {
                                               Utils.alertshow("Error:", error);
                                           });
@@ -102,11 +113,12 @@ angular.module('App').controller('loginController', function($rootScope, $scope,
                                   function (err) {
                                       alert('error retrieving token: ' + err);
                                   }
-                                );*/
+                                );
 
                         });
 
-                        $state.go('app.home');
+                        //  $state.go('app.home');
+                        $state.go($scope.transition);
                         $log.log("Starter page", "Home");
                     } else {
                         Utils.hide();

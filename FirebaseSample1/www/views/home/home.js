@@ -3,6 +3,7 @@ angular.module('App').controller('homeController', function($rootScope, $scope, 
 
     var h = window.innerHeight;
     //    document.getElementById("itemScroll").style.height = h - 50;
+    $rootScope.currentState = "app.home";
 
     $scope.itemHeight = 300;
     $scope.offset = 6;
@@ -57,6 +58,7 @@ angular.module('App').controller('homeController', function($rootScope, $scope, 
             });
             alertPopup.then(function(res) {
                 $location.path("/login");
+                $rootScope.currentState = "add";
             });
         }
 

@@ -4,7 +4,7 @@ angular.module('App').controller('AppCtrl', function ($scope, $rootScope, $state
     $scope.showLeftMenu = function () {
         $ionicSideMenuDelegate.toggleLeft();
     };
-
+    $rootScope.currentState = "app";
  /*   try {
         firebase.auth().onAuth(function (authData) {
             if (authData) {

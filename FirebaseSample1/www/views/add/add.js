@@ -12,7 +12,7 @@ angular.module('App').controller('addController', function($rootScope, $scope, $
          fade: true
          //   asNavFor: '.photo_thumbs'
      });*/
-
+    $rootScope.currentState = "add";
     $scope.item = {};
     $scope.imageArr = [];
     $scope.parseFile = null;
