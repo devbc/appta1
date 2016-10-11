@@ -1,9 +1,9 @@
 'Use Strict';
 
-angular.module('App').controller('loginController', function ($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseAuth, $firebaseObject, $log, Auth, FURL, Utils, $stateParams) {
+angular.module('App').controller('loginController', function($rootScope, $scope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseAuth, $firebaseObject, $log, Auth, FURL, Utils, $stateParams) {
     //var ref = new Firebase(FURL);
     // jq('.wrapper').css('min-height', window.innerHeight);
-   
+
     $scope.transition = ""
     if ($rootScope.currentState == null) {
         $scope.transition = "app.home";
@@ -92,28 +92,51 @@ angular.module('App').controller('loginController', function ($rootScope, $scope
                                 }
                             }
                             $rootScope.currentUser = usr;
-                               FCMPlugin.getToken(
-                                  function (token) {
-                                      alert(token + " ... " + $rootScope.currentUserKey);
-                                      var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
-                                      obj.$loaded().then(function (data) {
+                            FCMPlugin.getToken(
+                                function(token) {
+                                    alert(token + " ... " + $rootScope.currentUserKey);
+                                    var obj = $firebaseObject(ref.child("users").child($rootScope.currentUserKey));
+                                    obj.$loaded().then(function(data) {
 
-                                          obj.uToken = token;
-                                          obj.$save().then(function (ref) {
-                                              //     console.log(ref);
-                                              alert("Token Updated Successfully.");
-                                              //   $state.go('app.home');
-                                              $state.go($scope.transition);
-                                              
-                                          }, function (error) {
-                                              Utils.alertshow("Error:", error);
-                                          });
-                                      });
-                                  },
-                                  function (err) {
-                                      alert('error retrieving token: ' + err);
-                                  }
-                                );
+                                        obj.uToken = token;
+                                        obj.$save().then(function(ref) {
+                                            //     console.log(ref);
+                                            alert("Token Updated Successfully.");
+                                            //   $state.go('app.home');
+                                            $state.go($scope.transition);
+
+                                        }, function(error) {
+                                            Utils.alertshow("Error:", error);
+                                        });
+                                    });
+                                },
+                                function(err) {
+                                    alert('error retrieving token: ' + err);
+                                }
+                            );
+
+                            FCMPlugin.onNotification(
+                                function(data) {
+                                    alert(JSON.stringify(data));
+                                    if (data.wasTapped) {
+                                        //Notification was received on device tray and tapped by the user. 
+                                        alert(JSON.stringify(data));
+                                    } else {
+                                        //Notification was received in foreground. Maybe the user needs to be notified. 
+                                        alert(JSON.stringify(data));
+                                        if (data.type == "offerQuestion") {
+                                            alert("inside if");
+                                            $location.go(data.url);
+                                        }
+                                    }
+                                },
+                                function(msg) {
+                                    alert('onNotification callback successfully registered: ' + msg);
+                                },
+                                function(err) {
+                                    alert('Error registering onNotification callback: ' + err);
+                                }
+                            );
 
                         });
 

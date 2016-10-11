@@ -1,5 +1,5 @@
 ﻿'Use Strict';
-angular.module('App').controller('itemController', function ($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $cordovaCamera, $stateParams) {
+angular.module('App').controller('itemController', function($scope, $rootScope, $state, $cordovaOauth, $localStorage, $location, $http, $ionicPopup, $firebaseObject, Auth, FURL, Utils, $firebaseArray, $cordovaCamera, $stateParams, Notifier) {
     console.log($stateParams);
     $scope.itemId = $stateParams.item;
     $rootScope.currentState = "/item/" + $scope.itemId;
@@ -9,26 +9,40 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
     $scope.question = "";
     var ref = firebase.database().ref();
     var obj = $firebaseObject(ref.child("items").child($stateParams.item));
-    obj.$loaded().then(function (data) {
+    obj.$loaded().then(function(data) {
         $scope.item = data;
         console.log(data);
+        var x = firebase.database().ref('/users').orderByChild("email").equalTo($scope.item.owner).once('value').then(function(snapshot) {
+            var user1 = snapshot.val();
+            var usr;
+            for (var key in user1) {
+                if (user1.hasOwnProperty(key)) {
+                    usr = user1[key];
+                    $scope.item.user = usr;
+                    break;
+                }
+            }
+
+        });
+
     });
 
-    $scope.showMoreDetails = function () {
+    $scope.showMoreDetails = function() {
         $scope.displayFirst = false;
         loadMap();
     }
 
-    $scope.showQuestionDiv = function () {
+    $scope.showQuestionDiv = function() {
         $scope.showQuestionText = true;
     }
 
-    $scope.askQuestion = function (question) {
+    $scope.askQuestion = function(question) {
         console.log($scope.question);
+        $scope.question = question;
         var offerJSON = {
             "answerer": $scope.item.owner,
             "questioner": $rootScope.currentUser.email,
-            "faq":"N",
+            "faq": "N",
             "questionText": question,
             "answerText": "",
             "created_on": new Date().getTime(),
@@ -36,20 +50,25 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
             "itemId": $scope.itemId
         }
         var messagesRef = $firebaseArray(firebase.database().ref().child("questions"));
-        messagesRef.$loaded().then(function (res) {
-            messagesRef.$add(offerJSON).then(function (ref) {
+        messagesRef.$loaded().then(function(res) {
+            messagesRef.$add(offerJSON).then(function(ref) {
                 $ionicPopup.alert({
                     title: 'Info.',
                     template: 'Your question will be delivered to the owner.'
                 });
                 $scope.showQuestionText = false;
+                var params = {
+                    "url": '/offers/' + $scope.itemId,
+                    "type": "offerQuestion"
+                };
+                Notifier.sendNotification("New Question : " + $scope.item.itemName, $scope.question, params, false, $scope.item.user.uToken);
             });
         });
-       
+
     }
 
     function loadMap() {
-        alert("loadMap 1" + $scope.item.location.lat + " ... " +  $scope.item.location.lon);
+        alert("loadMap 1" + $scope.item.location.lat + " ... " + $scope.item.location.lon);
         var myLatlng = new google.maps.LatLng($scope.item.location.lat, $scope.item.location.lon);
 
         var mapOptions = {
@@ -64,11 +83,11 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
             position: myLatlng,
             map: map
         });
-    
+
         $scope.map = map;
     }
 
-    $scope.makeAnOffer = function () {
+    $scope.makeAnOffer = function() {
         $scope.userOffer = {};
 
         // An elaborate, custom popup
@@ -78,72 +97,71 @@ angular.module('App').controller('itemController', function ($scope, $rootScope,
             title: 'Make an Offer',
             subTitle: 'Either buy now or make an offer by entering the price.',
             scope: $scope,
-            buttons: [
-              {
-                  text: 'Offer',
-                  onTap: function (e) {
-                      alert("Offer" + $scope.itemId);
-                      var offerJSON = {
-                          "offeror": $scope.item.owner,
-                          "offeree": $rootScope.currentUser.email,
-                          "offeredPrice":$scope.userOffer.price,
-                          "isProposedPrice": "N",
-                          "counterPrice": null,
-                          "created_on": new Date().getTime(),
-                          "accepted": "N",
-                          "rejected": "N",
-                          "block": "N",
-                          "itemId": $scope.itemId
-                      }
+            buttons: [{
+                    text: 'Offer',
+                    onTap: function(e) {
+                        alert("Offer" + $scope.itemId);
+                        var offerJSON = {
+                            "offeror": $scope.item.owner,
+                            "offeree": $rootScope.currentUser.email,
+                            "offeredPrice": $scope.userOffer.price,
+                            "isProposedPrice": "N",
+                            "counterPrice": null,
+                            "created_on": new Date().getTime(),
+                            "accepted": "N",
+                            "rejected": "N",
+                            "block": "N",
+                            "itemId": $scope.itemId
+                        }
 
-                      $scope.offer(offerJSON);
+                        $scope.offer(offerJSON);
 
-                  }
-              },
-              {
-                  text: 'Buy Now',
-                  type: 'button-positive',
-                  onTap: function (e) {
+                    }
+                },
+                {
+                    text: 'Buy Now',
+                    type: 'button-positive',
+                    onTap: function(e) {
 
-                      alert("Buy Now" + $scope.itemId);
-                      var offerJSON = {
-                          "offeror": $scope.item.owner,
-                          "offeree": $rootScope.currentUser.email,
-                          "offeredPrice": $scope.item.itemPrice,
-                          "isProposedPrice": "Y",
-                          "counterPrice": null,
-                          "created_on": new Date().getTime(),
-                          "accepted": "N",
-                          "rejected": "N",
-                          "block": "N",
-                          "itemId": $scope.itemId
-                      }
+                        alert("Buy Now" + $scope.itemId);
+                        var offerJSON = {
+                            "offeror": $scope.item.owner,
+                            "offeree": $rootScope.currentUser.email,
+                            "offeredPrice": $scope.item.itemPrice,
+                            "isProposedPrice": "Y",
+                            "counterPrice": null,
+                            "created_on": new Date().getTime(),
+                            "accepted": "N",
+                            "rejected": "N",
+                            "block": "N",
+                            "itemId": $scope.itemId
+                        }
 
-                      $scope.offer(offerJSON);
+                        $scope.offer(offerJSON);
 
-                  }
-              }
+                    }
+                }
             ]
         });
 
-        $scope.closeOfferPopUp = function () {
+        $scope.closeOfferPopUp = function() {
             myPopup.close();
         }
-        
 
-        myPopup.then(function (res) {
+
+        myPopup.then(function(res) {
             console.log('Tapped!', res);
         });
 
-    /*    $timeout(function () {
-            myPopup.close(); //close the popup after 3 seconds for some reason
-        }, 3000);*/
+        /*    $timeout(function () {
+                myPopup.close(); //close the popup after 3 seconds for some reason
+            }, 3000);*/
     }
 
-    $scope.offer = function (offerJSON) {
+    $scope.offer = function(offerJSON) {
         var messagesRef = $firebaseArray(firebase.database().ref().child("offers"));
-        messagesRef.$loaded().then(function (res) {
-            messagesRef.$add(offerJSON).then(function (ref) {
+        messagesRef.$loaded().then(function(res) {
+            messagesRef.$add(offerJSON).then(function(ref) {
                 $ionicPopup.alert({
                     title: 'Info.',
                     template: 'Owner has been notified with the offer.'
