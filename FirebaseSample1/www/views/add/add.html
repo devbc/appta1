@@ -38,15 +38,15 @@
                             </span>
                                 </div> -->
                             <!--    <div class="row modal-bg add-bottom">
-                                <img ng-click="getImage()" class="uploadPic" />
-                                <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
-                            </div>
-                            <ul id="takePicture">
-                                <li>
-                                    <a ng-click="getCamera()"><i class="icon ion-android-camera" ng-style="color: white; font-size:20px;"></i></a>
-                                </li>
-                            </ul> 
-            </div>-->
+                                                <img ng-click="getImage()" class="uploadPic" />
+                                                <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
+                                            </div>
+                                            <ul id="takePicture">
+                                                <li>
+                                                    <a ng-click="getCamera()"><i class="icon ion-android-camera" ng-style="color: white; font-size:20px;"></i></a>
+                                                </li>
+                                            </ul>
+                            </div>-->
                         </wz-step>
                         <wz-step wz-title="Location" canenter="enterValidation">
                             <div class="checkout_form_header">
@@ -55,20 +55,22 @@
                                     <button class="close" ng-click="closeAddNew()"></button>
                                 </div>
                             </div>
-                            <div class="" style="margin-top:25% !important;">
+                            <div class="container" style="margin-top:25% !important;">
                                 <div class="checkout_form">
                                     <form>
-                                    <div class="checkout_form_ico ico1"></div>
-                                    <div class="checkout_form_title">To be picked up at</div>
-                                    <ul class="form_list">
-                                        <li>
-                                            <input class="inputbox" type="text" id="userLoc" ng-model="item.location" ng-autocomplete="locResult" details="locDetails" options="locOptions" required />
-                                        </li>
-                                        <li class="buttons">
-                                            <button class="button" type="submit" wz-next>Next</button>
-                                        </li>
-                                    </ul>
-                                        </form>
+
+                                        <div class="checkout_form_ico ico1"></div>
+                                        <div class="checkout_form_title">To be picked up at</div>
+                                        <ul class="form_list">
+                                            <li>
+                                                <input class="inputbox" type="text" id="userLoc" ng-model="item.location" ng-autocomplete="locResult" details="locDetails" options="locOptions" required />
+                                            </li>
+                                            <li class="buttons">
+                                                <button class="button" type="submit" wz-next>Next</button>
+                                            </li>
+                                        </ul>
+
+                                    </form>
                                 </div>
                             </div>
                             <!--       <div class="pageOne">
@@ -126,7 +128,7 @@
                                     <button type="button" class="next-button" wz-next>Next<span class="login-link-icon icon-right ion-chevron-right"></span></button>
                                 </div>
                             </div>
-                         
+
                             -->
                         </wz-step>
                         <wz-step wz-title="Title">
