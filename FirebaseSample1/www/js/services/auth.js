@@ -10,18 +10,7 @@ angular.module('App').factory('Auth', function(FURL, $log, $firebaseAuth, $fireb
     var auth = $firebaseAuth();
 
 
-    /* try {
-       //  var authref = $firebaseAuth(ref);
-         auth.$onAuth(function (authData) {
-             if (authData) {
-                 console.log("Logged in as:", authData.uid);
-             } else {
-                 console.log("Logged out");
-             }
-         });
-     } catch (e) {
-         alert(e);
-     }*/
+    
 
     var Auth = {
         user: {},
@@ -33,11 +22,7 @@ angular.module('App').factory('Auth', function(FURL, $log, $firebaseAuth, $fireb
         },
 
         createProfile: function(uid, user) {
-            /*  var profile = {
-				id: uid,
-        email: user.email,
-				registered_in: Date()
-      };*/
+          
 
             // If you want insert more data should modify register.html and modify your object.
 
@@ -62,18 +47,7 @@ angular.module('App').factory('Auth', function(FURL, $log, $firebaseAuth, $fireb
             return auth.$createUserWithEmailAndPassword(user.email, user.password)
                 .then(function(firebaseUser) {
                     console.log("User created with uid: " + firebaseUser.uid + " <><> " + firebaseUser.emailVerified);
-                    /*  firebaseUser.updateProfile({
-                          address: "asasasa asa,as asa as, 12345",
-                          name: "Shaiwal Sharma",
-                        handle: "Jane Q. User",
-                        photoURL: "https://example.com/jane-q-user/profile.jpg"
-                      }).then(function() {
-                          // Update successful.
-                          Utils.alertshow("Successfully", "User Info updated successfully.");
-                      }, function(error) {
-                          // An error happened.
-                          Utils.alertshow("Error", "Error storing additional information.");
-                      });*/
+                  
                     firebaseUser.sendEmailVerification();
                     Auth.createProfile(firebaseUser.uid, user);
                 })
